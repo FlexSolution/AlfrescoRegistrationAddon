@@ -1,0 +1,11 @@
+/build.xml
+/antProp.properties
+*.iml
+/alfrescoShare/run.sh
+/alfrescoShare/run.bat
+/.idea/
+/alfrescoRepo/target/
+/alfrescoShare/target/
+/alfrescoRepo/.ant-targets-build.xml
+/alfrescoRepo/run.sh
+/alfrescoRepo/run.bat

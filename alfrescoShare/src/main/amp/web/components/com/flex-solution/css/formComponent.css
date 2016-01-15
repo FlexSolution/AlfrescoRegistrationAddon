@@ -1,0 +1,19 @@
+/* FormUI Component */
+
+.customForm{
+    width: 34em;
+    margin-left: 35%;
+    margin-top: 10%;
+    border: 1px solid grey;
+}
+
+div[id*=-form-container] .form-fields, .form-buttons
+{
+    padding: 1em;
+    border-bottom: none;
+}
+
+div[id*=-form-container]
+{
+    margin-bottom: 1em;
+}

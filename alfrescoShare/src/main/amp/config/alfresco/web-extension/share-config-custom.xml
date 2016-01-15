@@ -1,0 +1,74 @@
+<alfresco-config>
+
+    <config evaluator="aspect" condition="fs:newUserAspect">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="fs:answerDate"/>
+                    <show id="fs:rejectReason"/>
+                    <show id="fs:whoReviewed"/>
+                </field-visibility>
+                <appearance>
+                    <field id="fs:answerDate" label-id="answerDate"/>
+                    <field id="fs:whoReviewed" label="who reviewed"/>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!--assign review group form-->
+    <config evaluator="model-type" condition="frm:reviewUsers">
+        <forms>
+            <form>
+                <field-visibility>
+                </field-visibility>
+                <appearance>
+                    <field id="frm:isRequired" label="New user requires review"
+                           help="Check, if new user requires review">
+                    </field>
+
+                    <field id="frm:groupAssignee" label-id="assoc.frm_groupAssignee"
+                           help="Please, provide your last">
+                    </field>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!--User review workflow-->
+    <config evaluator="task-type" condition="fswf:userReviewingTask">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="frm:firstName"/>
+                    <show id="frm:lastName"/>
+                    <show id="frm:email"/>
+                    <show id="fswf:doApprove"/>
+                    <show id="bpm:status"/>
+                    <show id="fs:rejectReason"/>
+                    <show id="transitions"/>
+                </field-visibility>
+                <appearance>
+                    <field id="frm:firstName" label="First name"/>
+                    <field id="frm:lastName" label="Last name"/>
+                    <field id="frm:email" label="E-mail" read-only="true"/>
+                    <field id="fswf:doApprove" label="Approve user">
+                        <control template="/org/alfresco/components/form/controls/doApproveWorkflow.ftl">
+                        </control>
+                    </field>
+                    <field id="bpm:status" label="Status"/>
+
+                    <field id="fs:rejectReason" label="Rejected reason">
+                        <control template="/org/alfresco/components/form/controls/rejectReasonWorkflow.ftl">
+                        </control>
+                    </field>
+
+                    <field id="transitions">
+                        <control template="/org/alfresco/components/form/controls/transitionsWorkflow.ftl">
+                        </control>
+                    </field>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+</alfresco-config>

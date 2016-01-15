@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Create user form</shortname>
+    <description>Return create user form</description>
+    <url>/com/flex-solution/formComponent</url>
+    <authentication>user</authentication>
+    <format default="html"></format>
+</webscript>

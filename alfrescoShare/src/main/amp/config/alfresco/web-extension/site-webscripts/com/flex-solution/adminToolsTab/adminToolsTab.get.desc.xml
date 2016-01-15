@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>New admin-tools tab</shortname>
+    <description>Add new tab on admin-tools panel</description>
+    <url>/com/flex-solution/adminToolsTab</url>
+    <family>admin-console</family>
+    <authentication>admin</authentication>
+</webscript>

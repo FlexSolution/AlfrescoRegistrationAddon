@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.activiti.org/test">
+    <process id="newUserReview" name="My process" isExecutable="true">
+        <startEvent id="startevent1" name="Start" activiti:formKey="bpm:startTask"></startEvent>
+        <endEvent id="endevent1" name="End"></endEvent>
+        <userTask id="reviewUserTask" name="User review" activiti:formKey="fswf:userReviewingTask"
+                  activiti:candidateGroups="${bpm_groupAssignee.properties.authorityName}">
+            <extensionElements>
+                <activiti:taskListener event="complete"
+                                       class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+                    <activiti:field name="script">
+                        <activiti:string>
+                                &lt;import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/saveNewUser.js"&gt;
+                        </activiti:string>
+                    </activiti:field>
+                </activiti:taskListener>
+            </extensionElements>
+        </userTask>
+        <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="reviewUserTask"></sequenceFlow>
+        <sequenceFlow id="flow2" sourceRef="reviewUserTask" targetRef="endevent1"></sequenceFlow>
+    </process>
+</definitions>

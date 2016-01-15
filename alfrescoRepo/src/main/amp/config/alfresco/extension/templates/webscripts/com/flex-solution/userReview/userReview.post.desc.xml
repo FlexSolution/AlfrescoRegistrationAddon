@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Review users</shortname>
+    <description>Review users</description>
+    <url>/com/flex-solution/userReview</url>
+    <authentication>admin</authentication>
+    <format default="json"></format>
+</webscript>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="fs:newUser" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>Document Model for Repo Extension X</description>
+    <author>My Name</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco System Model Definitions -->
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+    </imports>
+
+    <!-- Custom namespace for your domain -->
+    <namespaces>
+        <namespace uri="http://www.flex-solution.com/model/newUser/1.0" prefix="fs"/>
+    </namespaces>
+
+    <!-- ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        -->
+
+
+    <aspects>
+        <aspect name="fs:newUserAspect">
+            <properties>
+                <property name="fs:answerDate">
+                    <type>d:date</type>
+                </property>
+            </properties>
+
+            <associations>
+                <association name="fs:whoReviewed">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>cm:person</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+
+            </associations>
+        </aspect>
+
+        <aspect name="fs:newRejectedUserAspect">
+            <properties>
+                <property name="fs:rejectReason">
+                    <type>d:text</type>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+</model>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="frm:forms" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>Document Model for Repo Extension X</description>
+    <author>My Name</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+    </imports>
+
+    <!-- Custom namespace for your domain -->
+    <namespaces>
+        <namespace uri="http://www.flex-solution.com/model/forms/1.0" prefix="frm"/>
+    </namespaces>
+
+    <types>
+
+        <type name="frm:createUser">
+            <title>Create user form</title>
+            <mandatory-aspects>
+                <aspect>frm:userCredentials</aspect>
+            </mandatory-aspects>
+        </type>
+
+        <type name="frm:reviewUsers">
+            <title>Review user form</title>
+            <properties>
+                <property name="frm:isRequired">
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+
+            <associations>
+
+                <association name="frm:groupAssignee">
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </source>
+                    <target>
+                        <!-- TODO: Refactor when group is pulled into content model -->
+                        <class>cm:authorityContainer</class>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </target>
+                </association>
+
+            </associations>
+        </type>
+    </types>
+
+    <aspects>
+        <aspect name="frm:userCredentials">
+                <properties>
+                    <property name="frm:firstName">
+                        <type>d:text</type>
+                        <mandatory>true</mandatory>
+                    </property>
+
+                    <property name="frm:lastName">
+                        <type>d:text</type>
+                    </property>
+
+                    <property name="frm:email">
+                        <type>d:text</type>
+                        <mandatory>true</mandatory>
+                        <constraints>
+                            <constraint name="frm:emailExpression" type="REGEX">
+                                <parameter name="expression">
+                                    <value>^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$</value>
+                                </parameter>
+                            </constraint>
+                        </constraints>
+                    </property>
+                </properties>
+        </aspect>
+    </aspects>
+</model>
