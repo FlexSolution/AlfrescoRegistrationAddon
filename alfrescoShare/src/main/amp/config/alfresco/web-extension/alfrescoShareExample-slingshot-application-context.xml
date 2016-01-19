@@ -21,10 +21,8 @@
                 <value>alfresco.web-extension.messages.fs-newUser-model_en_US</value>
                 <value>alfresco.web-extension.messages.fs-forms-model_en_US</value>
                 <value>alfresco.web-extension.messages.fs-newUserReviewWorkflow-model_en_US</value>
-
                 <value>alfresco.web-extension.messages.createUserPage_en_US</value>
                 <value>alfresco.web-extension.messages.adminToolsTab_en_US</value>
-                <value>alfresco.web-extension.messages.consoleUserRegConfig_en_US</value>
                 <value>alfresco.web-extension.messages.formsMessages_en_US</value>
             </list>
         </property>
