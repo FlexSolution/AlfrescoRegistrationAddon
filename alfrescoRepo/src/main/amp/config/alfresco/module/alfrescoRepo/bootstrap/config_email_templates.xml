@@ -1,0 +1,47 @@
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0"
+           xmlns:cm="http://www.alfresco.org/model/content/1.0"
+           xmlns:app="http://www.alfresco.org/model/application/1.0">
+
+    <cm:folder view:childName="cm:registration-templates">
+        <app:uifacets/>
+        <cm:name>Registration templates</cm:name>
+        <app:icon>space-icon-default</app:icon>
+        <cm:title>Registration templates</cm:title>
+        <cm:description></cm:description>
+        <cm:contains>
+            <cm:content view:childName="cm:approved-user.ftl">
+                <view:aspects>
+                    <cm:titled/>
+                    <cm:author/>
+                    <app:inlineeditable/>
+                </view:aspects>
+                <view:properties>
+                    <app:editInline>true</app:editInline>
+                    <cm:description>Uses on approved users .</cm:description>
+                    <cm:content>contentUrl=classpath:alfresco/module/${project.artifactId}/bootstrap/approved-user.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
+                    <cm:title>Email template for approved users</cm:title>
+                    <cm:author>Me</cm:author>
+                    <cm:name>approved-user.ftl</cm:name>
+                </view:properties>
+                <view:associations></view:associations>
+            </cm:content>
+
+            <cm:content view:childName="cm:rejected-user.ftl">
+                <view:aspects>
+                    <cm:titled/>
+                    <cm:author/>
+                    <app:inlineeditable/>
+                </view:aspects>
+                <view:properties>
+                    <app:editInline>true</app:editInline>
+                    <cm:description>Uses on rejected users .</cm:description>
+                    <cm:content>contentUrl=classpath:alfresco/module/${project.artifactId}/bootstrap/rejected-user.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
+                    <cm:title>Email template for rejected users</cm:title>
+                    <cm:author>Me</cm:author>
+                    <cm:name>rejected-user.ftl</cm:name>
+                </view:properties>
+                <view:associations></view:associations>
+            </cm:content>
+        </cm:contains>
+    </cm:folder>
+</view:view>

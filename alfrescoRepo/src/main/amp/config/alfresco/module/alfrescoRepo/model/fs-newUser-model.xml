@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="fs:newUser" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="fs-newUser:fs-newUser" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>Document Model for Repo Extension X</description>
-    <author>My Name</author>
+    <description>User for Repo Extension X</description>
+    <author>flex-solution.com</author>
     <version>1.0</version>
 
     <imports>
@@ -11,13 +11,11 @@
         <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
         <!-- Import Alfresco Content Domain Model Definitions -->
         <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
-        <!-- Import Alfresco System Model Definitions -->
-        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
     </imports>
 
     <!-- Custom namespace for your domain -->
     <namespaces>
-        <namespace uri="http://www.flex-solution.com/model/newUser/1.0" prefix="fs"/>
+        <namespace uri="http://www.flex-solution.com/model/newUser/1.0" prefix="fs-newUser"/>
     </namespaces>
 
     <!-- ===============================================================================================================
@@ -26,15 +24,15 @@
 
 
     <aspects>
-        <aspect name="fs:newUserAspect">
+        <aspect name="fs-newUser:newUserAspect">
             <properties>
-                <property name="fs:answerDate">
+                <property name="fs-newUser:answerDate">
                     <type>d:date</type>
                 </property>
             </properties>
 
             <associations>
-                <association name="fs:whoReviewed">
+                <association name="fs-newUser:whoReviewed">
                     <source>
                         <mandatory>false</mandatory>
                         <many>true</many>
@@ -49,9 +47,9 @@
             </associations>
         </aspect>
 
-        <aspect name="fs:newRejectedUserAspect">
+        <aspect name="fs-newUser:newRejectedUserAspect">
             <properties>
-                <property name="fs:rejectReason">
+                <property name="fs-newUser:rejectReason">
                     <type>d:text</type>
                 </property>
             </properties>

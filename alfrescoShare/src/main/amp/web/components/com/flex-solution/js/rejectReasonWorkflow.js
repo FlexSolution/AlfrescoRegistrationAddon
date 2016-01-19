@@ -25,7 +25,7 @@
                                 fieldId: textareaId,
                                 handler: Alfresco.forms.validation.mandatory,
                                 when: when,
-                                message: "Please, populate reject reason field"
+                                message: Alfresco.util.message("mandatory.reject.reason")
                             });
                         //onKeyup validation
                         when = "keyup";
@@ -54,6 +54,8 @@
                             }
                         }
                         YAHOO.util.Dom.get(textareaId).parentNode.style.display = "none";
+
+
                     }
                 });
 

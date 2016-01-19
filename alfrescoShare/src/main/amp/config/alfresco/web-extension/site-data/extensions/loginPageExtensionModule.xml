@@ -1,7 +1,5 @@
 <extension>
     <modules>
-
-
         <module>
             <id>Customize login</id>
             <version>1.0</version>
@@ -12,11 +10,6 @@
                     <sourcePackageRoot>org.alfresco.customization.guest</sourcePackageRoot>
                 </customization>
             </customizations>
-            <!--<components>-->
-            <!--<component>-->
-                <!--<region-id>additional-login</region-id>-->
-                <!--<url></url>-->
-            <!--</component>-->
         </module>
     </modules>
 </extension>

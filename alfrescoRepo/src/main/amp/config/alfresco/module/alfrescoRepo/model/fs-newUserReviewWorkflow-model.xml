@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="fswf:newUsersReviewWorkflow" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="fs-newUserRWF:fs-newUserReviewWorkflow" xmlns="http://www.alfresco.org/model/dictionary/1.0">
     <!-- Optional meta-data about the model -->
-    <description>Workflow Model for Repo Extension X</description>
-    <author>My Name</author>
+    <description>Workflow Model for Repo Extension</description>
+    <author>flex-solution.com</author>
     <version>1.0</version>
 
     <imports>
@@ -12,13 +12,13 @@
         <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
         <!-- Import Alfresco Workflow Model Definitions -->
         <import uri="http://www.alfresco.org/model/bpm/1.0" prefix="bpm"/>
-        <import uri="http://www.flex-solution.com/model/newUser/1.0" prefix="fs"/>
-        <import uri="http://www.flex-solution.com/model/forms/1.0" prefix="frm"/>
+        <import uri="http://www.flex-solution.com/model/newUser/1.0" prefix="fs-newUser"/>
+        <import uri="http://www.flex-solution.com/model/forms/1.0" prefix="fs-forms"/>
     </imports>
 
     <!-- Custom namespace for your domain -->
     <namespaces>
-        <namespace uri="http://www.flex-solution.com/model/newUsersReviewWorkflow/1.0" prefix="fswf"/>
+        <namespace uri="http://www.flex-solution.com/model/newUsersReviewWorkflow/1.0" prefix="fs-newUserRWF"/>
     </namespaces>
 
     <!-- ===============================================================================================================
@@ -27,20 +27,20 @@
 
     <types>
 
-        <type name="fswf:userReviewingTask">
+        <type name="fs-newUserRWF:userReviewingTask">
             <parent>bpm:workflowTask</parent>
 
             <properties>
-                <property name="fswf:doApprove">
+                <property name="fs-newUserRWF:doApprove">
                     <type>d:boolean</type>
                 </property>
             </properties>
 
             <mandatory-aspects>
-                <aspect>fs:newUserAspect</aspect>
-                <aspect>fs:newRejectedUserAspect</aspect>
+                <aspect>fs-newUser:newUserAspect</aspect>
+                <aspect>fs-newUser:newRejectedUserAspect</aspect>
                 <aspect>bpm:groupAssignee</aspect>
-                <aspect>frm:userCredentials</aspect>
+                <aspect>fs-forms:userCredentials</aspect>
 
             </mandatory-aspects>
         </type>

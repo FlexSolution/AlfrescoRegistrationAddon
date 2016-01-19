@@ -26,8 +26,9 @@
 
         <property name="models">
             <list>
-                <value>alfresco/module/${project.artifactId}/model/newUsersReviewWorkflow-model.xml</value>
+                <value>alfresco/module/${project.artifactId}/model/fs-newUserReviewWorkflow-model.xml</value>
             </list>
         </property>
     </bean>
+
 </beans>

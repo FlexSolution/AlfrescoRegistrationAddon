@@ -5,10 +5,10 @@
              xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
              typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
              targetNamespace="http://www.activiti.org/test">
-    <process id="newUserReview" name="My process" isExecutable="true">
+    <process id="newUserReview" name="Review new user" isExecutable="true">
         <startEvent id="startevent1" name="Start" activiti:formKey="bpm:startTask"></startEvent>
         <endEvent id="endevent1" name="End"></endEvent>
-        <userTask id="reviewUserTask" name="User review" activiti:formKey="fswf:userReviewingTask"
+        <userTask id="reviewUserTask" name="User review" activiti:formKey="fs-newUserRWF:userReviewingTask"
                   activiti:candidateGroups="${bpm_groupAssignee.properties.authorityName}">
             <extensionElements>
                 <activiti:taskListener event="complete"

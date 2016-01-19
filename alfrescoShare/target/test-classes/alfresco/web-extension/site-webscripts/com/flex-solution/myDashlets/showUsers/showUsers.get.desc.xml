@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Show users dashlet</shortname>
+    <description>Dispaly users which have aspect</description>
+    <family>user-dashlet</family>
+    <url>/com/flex-solution/myDashlets/showUsers</url>
+    <authenication>admin</authenication>
+</webscript>

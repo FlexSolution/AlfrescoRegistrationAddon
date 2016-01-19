@@ -12,14 +12,32 @@
     <bean id="${project.artifactId}.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
         <property name="models">
             <list>
-                <value>alfresco/module/${project.artifactId}/model/newUser-model.xml</value>
-                <value>alfresco/module/${project.artifactId}/model/forms-model.xml</value>
-                <value>alfresco/module/${project.artifactId}/model/newUsersReviewWorkflow-model.xml</value>
+                <value>alfresco/module/${project.artifactId}/model/fs-newUser-model.xml</value>
+                <value>alfresco/module/${project.artifactId}/model/fs-forms-model.xml</value>
+                <value>alfresco/module/${project.artifactId}/model/fs-newUserReviewWorkflow-model.xml</value>
             </list>
         </property>
 
     </bean>
-	
 
+
+    <!--uploads at first time deploy (and when no exists???)-->
+    <bean id="fs.bootstrapSpaces" class="org.alfresco.repo.module.ImporterModuleComponent" parent="module.baseComponent">
+        <property name="moduleId" value="${project.artifactId}" />
+        <property name="name" value="bootstrapSpaces" />
+        <property name="description" value="Initial email templates" />
+        <property name="sinceVersion" value="1.0" />
+        <property name="appliesFromVersion" value="1.0" />
+        <!-- Data properties -->
+        <property name="importer" ref="spacesBootstrap"/>
+        <property name="bootstrapViews">
+            <list>
+    <props>
+        <prop key="path">/${spaces.company_home.childname}/${spaces.dictionary.childname}/${spaces.templates.email.childname}</prop>
+        <prop key="location">alfresco/module/${project.artifactId}/bootstrap/config_email_templates.xml</prop>
+    </props>
+            </list>
+        </property>
+    </bean>
 
 </beans>

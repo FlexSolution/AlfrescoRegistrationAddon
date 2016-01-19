@@ -4,6 +4,7 @@
      */
     var Dom = YAHOO.util.Dom,
         Event = YAHOO.util.Event;
+    var thisObj = this;
 
     /**
      * Alfresco Slingshot aliases
@@ -59,7 +60,7 @@
                     groupAssigneeButton._setDisabled(true);
 
                     //get  user requires review checkbox
-                    var check = Dom.get(myForm.formId.replace(/-form/g, "") + "_prop_frm_isRequired-entry");
+                    var check = Dom.get(myForm.formId.replace(/-form/g, "") + "_prop_fs-forms_isRequired-entry");
 
 
                     function onChangeCheckBox() {
@@ -87,7 +88,7 @@
                     }
 
                     //add validation (check whether objectFinder value is present)
-                    myForm.addValidation(myForm.formId.replace(/-form/g, "") + "_assoc_frm_groupAssignee", Alfresco.forms.validation.custom, null, "submit", "Please, add reviewing group");
+                    myForm.addValidation(myForm.formId.replace(/-form/g, "") + "_assoc_fs-forms_groupAssignee", Alfresco.forms.validation.custom, null, "submit", Alfresco.util.message("valid.add.revGroup"));
                     myForm.setValidateOnSubmit(true);
                     myForm.setSubmitElements(YAHOO.widget.Button.getButton(myForm.formId + "-submit"));
                     myForm.setSubmitAsJSON(true);

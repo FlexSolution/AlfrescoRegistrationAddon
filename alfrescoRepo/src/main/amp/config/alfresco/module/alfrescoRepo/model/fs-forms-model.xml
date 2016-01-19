@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="frm:forms" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="fs-forms:fs-forms" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>Document Model for Repo Extension X</description>
-    <author>My Name</author>
+    <description>Forms Model for Repo Extension X</description>
+    <author>flex-solution.com</author>
     <version>1.0</version>
 
     <imports>
@@ -14,22 +14,22 @@
 
     <!-- Custom namespace for your domain -->
     <namespaces>
-        <namespace uri="http://www.flex-solution.com/model/forms/1.0" prefix="frm"/>
+        <namespace uri="http://www.flex-solution.com/model/forms/1.0" prefix="fs-forms"/>
     </namespaces>
 
     <types>
 
-        <type name="frm:createUser">
+        <type name="fs-forms:createUser">
             <title>Create user form</title>
             <mandatory-aspects>
-                <aspect>frm:userCredentials</aspect>
+                <aspect>fs-forms:userCredentials</aspect>
             </mandatory-aspects>
         </type>
 
-        <type name="frm:reviewUsers">
+        <type name="fs-forms:reviewUsers">
             <title>Review user form</title>
             <properties>
-                <property name="frm:isRequired">
+                <property name="fs-forms:isRequired">
                     <type>d:boolean</type>
                     <mandatory>true</mandatory>
                 </property>
@@ -37,7 +37,7 @@
 
             <associations>
 
-                <association name="frm:groupAssignee">
+                <association name="fs-forms:groupAssignee">
                     <source>
                         <mandatory>false</mandatory>
                         <many>false</many>
@@ -55,22 +55,22 @@
     </types>
 
     <aspects>
-        <aspect name="frm:userCredentials">
+        <aspect name="fs-forms:userCredentials">
                 <properties>
-                    <property name="frm:firstName">
+                    <property name="fs-forms:firstName">
                         <type>d:text</type>
                         <mandatory>true</mandatory>
                     </property>
 
-                    <property name="frm:lastName">
+                    <property name="fs-forms:lastName">
                         <type>d:text</type>
                     </property>
 
-                    <property name="frm:email">
+                    <property name="fs-forms:email">
                         <type>d:text</type>
                         <mandatory>true</mandatory>
                         <constraints>
-                            <constraint name="frm:emailExpression" type="REGEX">
+                            <constraint name="fs-forms:emailExpression" type="REGEX">
                                 <parameter name="expression">
                                     <value>^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$</value>
                                 </parameter>
