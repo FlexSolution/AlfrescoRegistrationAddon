@@ -18,12 +18,13 @@
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <value>alfresco.web-extension.messages.fs-newUser-model_en_US</value>
-                <value>alfresco.web-extension.messages.fs-forms-model_en_US</value>
-                <value>alfresco.web-extension.messages.fs-newUserReviewWorkflow-model_en_US</value>
-                <value>alfresco.web-extension.messages.createUserPage_en_US</value>
-                <value>alfresco.web-extension.messages.adminToolsTab_en_US</value>
-                <value>alfresco.web-extension.messages.formsMessages_en_US</value>
+                <value>alfresco.web-extension.messages.fs-newUser-model</value>
+                <value>alfresco.web-extension.messages.fs-forms-model</value>
+                <value>alfresco.web-extension.messages.fs-newUserReviewWorkflow-model</value>
+                <value>alfresco.web-extension.messages.createUserPage</value>
+                <value>alfresco.web-extension.messages.adminToolsTab</value>
+                <value>alfresco.web-extension.messages.formsMessages</value>
+                <value>alfresco.web-extension.messages.login-page</value>
             </list>
         </property>
     </bean>

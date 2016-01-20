@@ -5,6 +5,7 @@
     var Dom = YAHOO.util.Dom,
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
+    var objectId;
 
     Alfresco.component.CreateUser = function (htmlId) {
         Alfresco.component.CreateUser.superclass.constructor.call(this, "Alfresco.component.CreateUser", htmlId);
@@ -40,7 +41,7 @@
                                 fieldId: this.id + "_prop_fs-forms_email",
                                 handler: Alfresco.forms.validation.mandatory,
                                 params: {},
-                                event: "keyup,change",
+                                event: "change",
                                 message: Alfresco.util.message("form.field.mandatory")
                             }
                             ,
@@ -51,7 +52,7 @@
                                     "requiresMatch": true,
                                     "expression": "^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})$"
                                 },
-                                event: "keyup,change",
+                                event: "change,mouseover",
                                 message: Alfresco.util.message("form.field.regex")
                             }
                             ,
@@ -59,13 +60,11 @@
                                 fieldId: this.id + "_prop_fs-forms_firstName",
                                 handler: Alfresco.forms.validation.mandatory,
                                 params: {},
-                                event: "keyup,change",
+                                event: "change",
                                 message: Alfresco.util.message("form.field.mandatory")
                             }
 
-                        ],
-                        disableSubmitButton: true,
-                        showCancelButton: false
+                        ]
                     });
 
                 if (this.id !== "null") {
@@ -74,50 +73,59 @@
             },
 
 
-            onReady: function () {
+            setupCallback: function (a, args) {
+                //debugger;
+                //var cancelBut =  YAHOO.widget.Button.getButton(objectId + "-form-cancel");
+                //cancelBut._setOnClick(function(){
+                //    window.location = "/share";
+                //});
 
 
-                YAHOO.Bubbling.on("afterFormRuntimeInit", function (a, args) {
-                    args[1].runtime.setSubmitAsJSON(true);
-                    args[1].runtime.setAJAXSubmit(true,
-                        {
-                            successCallback: {
-                                fn: function (obj) {
+                args[1].runtime.setSubmitAsJSON(true);
+                args[1].runtime.setAJAXSubmit(true,
+                    {
+                        successCallback: {
+                            fn: function (obj) {
 
-                                    if (obj.json.status.code == 200) {
+                                if (obj.json.status.code == 200) {
 
-                                        //redirect to home page on success
-                                        function onClickBut() {
-                                            window.location = "/share";
-                                        }
-
-                                        Alfresco.util.PopupManager.displayPrompt({
-                                            text: obj.json.message,
-                                            buttons: [{text: "Yes", handler: onClickBut, isDefault: true}]
-                                        });
+                                    //redirect to home page on success
+                                    function onClickBut() {
+                                        window.location = "/share";
                                     }
 
-                                },
-                                scope: this
-                            },
+                                    Alfresco.util.PopupManager.displayPrompt({
+                                        text: obj.json.message,
+                                        buttons: [{text: "Ok", handler: onClickBut}]
+                                    });
+                                }
 
-                            failureCallback: {
-                                fn: function (obj) {
-                                    if (obj.json.status.code == 400) {
-                                        Alfresco.util.PopupManager.displayMessage({
-                                            text: obj.json.message,
-                                            displayTime: 5
-                                        });
-                                    } else
-                                        Alfresco.util.PopupManager.displayPrompt({
-                                            text: obj.json.message
-                                        })
-                                },
-                                scope: this
-                            }
-                        });
-                });
+                            },
+                            scope: this
+                        },
+
+                        failureCallback: {
+                            fn: function (obj) {
+                                if (obj.json.status.code == 400) {
+                                    Alfresco.util.PopupManager.displayMessage({
+                                        text: obj.json.message,
+                                        displayTime: 5
+                                    });
+                                } else
+                                    Alfresco.util.PopupManager.displayPrompt({
+                                        text: obj.json.message
+                                    })
+                            },
+                            scope: this
+                        }
+                    });
+            },
+
+            onReady: function () {
+                objectId = this.id;
+                YAHOO.Bubbling.on("afterFormRuntimeInit", this.setupCallback);
             }
+
         }
     )
 })();

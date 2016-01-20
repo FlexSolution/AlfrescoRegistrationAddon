@@ -1,31 +1,3 @@
 <template-instance>
     <template-type>createUserPageTemplates/createUserPage</template-type>
-
-    <components>
-
-        <!--<component>-->
-            <!--<scope>template</scope>-->
-            <!--<region-id>createForm</region-id>-->
-            <!--<source-id>createForm</source-id>-->
-            <!--<url>/components/form</url>-->
-            <!--<properties>-->
-                <!--<itemKind>type</itemKind>-->
-                <!--<itemId>frm:createUser</itemId>-->
-                <!--<mode>create</mode>-->
-                <!--<submitType>multipart/form-data</submitType>-->
-                <!--<submissionUrl>/flex-solution/createNewUser/create_new_user</submissionUrl>-->
-                <!--<redirect>/share</redirect>-->
-                <!--<showCaption>true</showCaption>-->
-                <!--<showCancelButton>true</showCancelButton>-->
-            <!--</properties>-->
-        <!--</component>-->
-
-        <component>
-            <scope>template</scope>
-            <region-id>customForm</region-id>
-            <source-id>customForm</source-id>
-            <url>/com/flex-solution/formComponent</url>
-        </component>
-
-    </components>
 </template-instance>

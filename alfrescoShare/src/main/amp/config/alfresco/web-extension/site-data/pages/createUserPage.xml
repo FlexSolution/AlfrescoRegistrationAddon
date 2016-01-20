@@ -5,4 +5,13 @@
     <description-id>page.createUserPage.description</description-id>
     <template-instance>createUserPage</template-instance>
     <authentication>none</authentication>
+
+    <components>
+        <component>
+            <scope>page</scope>
+            <region-id>registrationForm</region-id>
+            <source-id>registrationForm</source-id>
+            <url>/com/flex-solution/formComponent</url>
+        </component>
+    </components>
 </page>

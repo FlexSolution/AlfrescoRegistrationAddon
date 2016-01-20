@@ -28,7 +28,7 @@
         Alfresco.util.YUILoaderHelper.require([], this.onComponentsLoaded, this);
 
 
-        UserRegConfigPanelHandler = function myConsoleComponent_constructor() {
+        UserRegConfigPanelHandler = function userRegConfigPanel_constructor() {
             UserRegConfigPanelHandler.superclass.constructor.call(this, "userConfigPanelHandler");
         };
 

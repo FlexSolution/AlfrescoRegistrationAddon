@@ -16,6 +16,7 @@
         {
             onReady: function () {
 
+                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.showNewUsers").id).offsetWidth;
 
                 //cell renderer for rejected users
                 //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
@@ -74,7 +75,8 @@
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
                         //render as text
-                        formatter: YAHOO.widget.DataTable.formatText
+                        formatter: YAHOO.widget.DataTable.formatText,
+                        minWidth: dashletWidth/4
                     },
 
                     {
@@ -89,7 +91,8 @@
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
                         //render as text
-                        formatter: YAHOO.widget.DataTable.formatText
+                        formatter: YAHOO.widget.DataTable.formatText,
+                        minWidth: dashletWidth/4
                     },
 
                     {
@@ -102,6 +105,7 @@
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
                         formatter: YAHOO.widget.DataTable.formatText,
+                        minWidth: dashletWidth/4
                     },
                     {
                         key: "prop_email",
@@ -112,7 +116,8 @@
                             sortFunction: compareFunction,
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
-                        formatter: YAHOO.widget.DataTable.formatText
+                        formatter: YAHOO.widget.DataTable.formatText,
+                        minWidth: dashletWidth/4
                     },
 
                     {
@@ -127,7 +132,8 @@
                         //column renderer function
                         formatter: customCellRenderer,
                         //cells class of current column
-                        className: "answerDate"
+                        className: "answerDate",
+                        minWidth: dashletWidth/4
                     },
 
                     //this column need that pull data about reject reason

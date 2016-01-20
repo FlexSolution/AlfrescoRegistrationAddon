@@ -1,15 +1,49 @@
-YUIEvent.onContentReady("but", function () {
-    var onClickBut = function () {
-        window.location = "/share/page/createUserPage";
-    };
+(function () {
+    Alfresco.component.regButton = function (htmlId) {
+        Alfresco.component.regButton.superclass.constructor.call(this, "Alfresco.component.regButton", htmlId);
 
-    var button = new YAHOO.widget.Button("but", {
-        type: "button",
-        disabled: false,
-        usearia: true
-    });
-    YAHOO.util.Event.on("but", "click", onClickBut);
-}, this);
+        return this;
+    };
+    YAHOO.extend(Alfresco.component.regButton, Alfresco.component.Base,
+        {
+
+            onReady: function () {
+                Alfresco.util.createYUIButton(this, this.id, this.onClick, {type: "button"}, this.id);
+            },
+            onClick: function () {
+                window.location = "/share/page/createUserPage";
+            }
+        }
+    )
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

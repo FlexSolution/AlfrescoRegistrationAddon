@@ -1,10 +1,15 @@
 /* FormUI Component */
 
 .customForm{
+    padding: 1em;
+    padding-top: 2em;
     width: 34em;
-    margin-left: 35%;
-    margin-top: 10%;
+    left: 37%;
+    top: 25%;
     border: 1px solid grey;
+    position: absolute;
+    z-index: 2;
+
 }
 
 div[id*=-form-container] .form-fields, .form-buttons
@@ -16,4 +21,10 @@ div[id*=-form-container] .form-fields, .form-buttons
 div[id*=-form-container]
 {
     margin-bottom: 1em;
+}
+
+div#comp-logo{
+    width: 100%;
+    /*text-align: center;*/
+    margin-bottom: 2em;
 }

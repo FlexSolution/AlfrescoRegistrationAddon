@@ -1,5 +1,24 @@
-<@link href="${url.context}/res/components/com/flex-solution/css/dashlets/showUsers.css"/>
 
+<@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/showUsersDashlet.js"/>
+<script type="text/javascript">
+    var dash = new Alfresco.widget.DashletResizer("${args.htmlid}", "${instance.object.id}").setOptions({});
+
+    new Alfresco.widget.DashletTitleBarActions("${args.htmlid}").setOptions(
+            {
+                actions:
+                        [
+                            {
+                                cssClass: "help",
+                                bubbleOnClick:
+                                {
+                                    message: "${msg("tooltip.rejectReason.message")}"
+                                },
+                                tooltip: "${msg("tooltip.help")}"
+                            }
+                        ]
+            });
+    new Alfresco.showNewUsers("${args.htmlid}");
+</script>
 
 <@markup id="widgets">
     <@createWidgets group="dashlets"/>
@@ -15,29 +34,3 @@
     </div>
     </@>
 </@>
-
-
-
-
-
-<@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/showUsersDashlet.js"/>
-<script type="text/javascript">
-    var dash = new Alfresco.widget.DashletResizer("${args.htmlid}", "${instance.object.id}").setOptions({});
-
-    new Alfresco.widget.DashletTitleBarActions("${args.htmlid}").setOptions(
-            {
-                actions:
-                        [
-                            {
-                                cssClass: "help",
-                                bubbleOnClick:
-                                {
-                                    message: "Information about user which registered"
-                                },
-                                tooltip: "Display help for this dashlet"
-                            }
-                        ]
-            });
-    new Alfresco.showNewUsers("${args.htmlid}");
-</script>
-

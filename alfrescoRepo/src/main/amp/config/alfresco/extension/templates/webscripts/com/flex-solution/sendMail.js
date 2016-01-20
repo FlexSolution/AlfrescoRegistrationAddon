@@ -14,11 +14,9 @@ function sendMail(templateXPath, templateProps, email, nodeForMailAction) {
 }
 
 function prepareTemplateProps(firstName, lastName, email, password, rejectReason){
-    debugger;
     var templateProps = new Object();
     templateProps["firstname"] = firstName;
     templateProps["creator"] = {firstname: person.properties["firstName"], lastname: person.properties["lastName"]};
-    //templateProps["shareUrl"] = url.server.replaceAll(":8080", "") + "/share";
     templateProps["username"] = email;
     templateProps["password"] = password;
     templateProps["firstname"] = firstName;

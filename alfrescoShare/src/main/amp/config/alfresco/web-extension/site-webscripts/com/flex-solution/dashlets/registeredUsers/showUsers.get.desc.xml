@@ -1,5 +1,5 @@
 <webscript>
-    <shortname>Show users dashlet</shortname>
+    <shortname>Registered users</shortname>
     <description>Dispaly users which have aspect</description>
     <family>user-dashlet</family>
     <url>/com/flex-solution/myDashlets/showUsers</url>

@@ -24,7 +24,7 @@ try {
         return currentPerson;
     }
 
-    function findUser(){
+    function findUser(email){
         var user = people.getPerson(email);
 
         if(user == null){
@@ -58,7 +58,7 @@ try {
     } else {
 
         //if user not exist
-        if (findUser()== null) {
+        if (findUser(email)== null) {
             var currentReviewingGroups = getConfigFile();
 
             //if reviewing group is present --> start workflow

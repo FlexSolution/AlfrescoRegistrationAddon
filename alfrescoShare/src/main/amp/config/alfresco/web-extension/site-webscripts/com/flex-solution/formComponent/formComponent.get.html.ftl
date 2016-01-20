@@ -14,12 +14,15 @@ new Alfresco.component.CreateUser("${id}");
 
 
     <div id="${id}-form-container" class="form-container">
+        <div id="comp-logo" class="theme-company-logo"></div>
+
         <div id="${id}-form-caption" class="caption"><span
                 class="mandatory-indicator">*</span>Required Fields
         </div>
 
         <form id="${id}-form" method="post" accept-charset="utf-8"
               action="/share/proxy/alfresco-noauth/com/flex-solution/createNewUser">
+
 
 
             <input id="${id}-form-redirect" name="alf_redirect" type="hidden" value="/share"/>
@@ -88,8 +91,6 @@ new Alfresco.component.CreateUser("${id}");
 
 
                 </div>
-
-                <span class="mandatory-indicator">*</span>Your account will be active after reviewing by our manager
             </div>
 
             <div id="${id}-form-buttons"
