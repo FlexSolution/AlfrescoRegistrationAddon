@@ -2,7 +2,7 @@
     <shortname>createNewUser</shortname>
     <description>Web script which gets new user form</description>
     <url>/com/flex-solution/createNewUser</url>
-    <format default="json"></format>
+    <format default="json"/>
     <authentication runas="admin">none</authentication>
     <transaction>required</transaction>
 </webscript>

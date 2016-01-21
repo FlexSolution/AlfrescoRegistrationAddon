@@ -9,29 +9,33 @@
     var prop_isApprove = task.getVariable('fs-newUserRWF_doApprove');
     var prop_rejectReason = task.getVariable('fs-newUser_rejectReason');
     var password = passGenerator.genPass();
-    var templateName;
+    var templateName = (prop_isApprove == true) ? "cm:approved-user.ftl" : "cm:rejected-user.ftl";
 
-    prepareUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason);
-
-    //choose email template
-    prop_isApprove == true ? templateName = "cm:approved-user.ftl" : templateName = "cm:rejected-user.ftl"
+    createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason);
 
     //send email
     sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason), prop_email, userhome);
 })();
 
 //create new cm:person and set needed aspects and properties
-function prepareUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason) {
-    var currentPerson = people.createPerson(prop_email, prop_firstName, prop_lastName, prop_email, password, prop_isApprove.booleanValue());
-    currentPerson.addAspect("fs-newUser:newUserAspect");
-    currentPerson.createAssociation(person, "fs-newUser:whoReviewed");
+function createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason) {
+
+    var newUser = people.createPerson(prop_email, prop_firstName, prop_lastName, prop_email, password, prop_isApprove.booleanValue());
+
+    newUser.addAspect("fs-newUser:newUserAspect");
+
+    newUser.createAssociation(person, "fs-newUser:whoReviewed");
+
     if (prop_isApprove == false) {
-        currentPerson.addAspect("fs-newUser:newRejectedUserAspect");
-        currentPerson.properties["fs-newUser:rejectReason"] = prop_rejectReason;
+        newUser.addAspect("fs-newUser:newRejectedUserAspect");
+        newUser.properties["fs-newUser:rejectReason"] = prop_rejectReason;
     }
-    currentPerson.properties["fs-newUser:answerDate"] = Date.now();
-    currentPerson.save();
-    return currentPerson;
+
+    newUser.properties["fs-newUser:answerDate"] = Date.now();
+
+    newUser.save();
+
+    return newUser;
 }
 
 

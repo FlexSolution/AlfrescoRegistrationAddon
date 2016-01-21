@@ -3,5 +3,5 @@
     <description>Retrive users</description>
     <url>/com/flex-solution/retrieveUsers</url>
     <authentication>admin</authentication>
-    <format default="json"></format>
+    <format default="json"/>
 </webscript>

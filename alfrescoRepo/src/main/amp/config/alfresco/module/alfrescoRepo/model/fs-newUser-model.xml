@@ -2,7 +2,7 @@
 <model name="fs-newUser:fs-newUser" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>User for Repo Extension X</description>
+    <description>User Model</description>
     <author>flex-solution.com</author>
     <version>1.0</version>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model name="fs-newUserRWF:fs-newUserReviewWorkflow" xmlns="http://www.alfresco.org/model/dictionary/1.0">
     <!-- Optional meta-data about the model -->
-    <description>Workflow Model for Repo Extension</description>
+    <description>Workflow Model</description>
     <author>flex-solution.com</author>
     <version>1.0</version>
 
@@ -41,7 +41,6 @@
                 <aspect>fs-newUser:newRejectedUserAspect</aspect>
                 <aspect>bpm:groupAssignee</aspect>
                 <aspect>fs-forms:userCredentials</aspect>
-
             </mandatory-aspects>
         </type>
     </types>

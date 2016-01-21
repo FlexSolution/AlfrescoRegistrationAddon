@@ -5,9 +5,9 @@
     var file = getConfigFile();
     if (file == null) {
         file = createConfigFile();
-    };
+    }
     file.content = json.get("assoc_fs-forms_groupAssignee_added");
-})()
+})();
 
 
 

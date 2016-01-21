@@ -19,12 +19,13 @@
                 //fire checkbox status event after form-runtime init
                 YAHOO.Bubbling.on("afterFormRuntimeInit", onChangeChBox);
 
+                // todo: move function outside onReady
                 function onChangeChBox(){
                     YAHOO.Bubbling.fire("approveUserChecked",
                         {
                             checked: checkbox.checked
                         });
-                };
+                }
 
                 YAHOO.util.Event.on(checkbox, "change", onChangeChBox);
 

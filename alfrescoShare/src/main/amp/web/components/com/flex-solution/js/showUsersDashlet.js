@@ -16,8 +16,7 @@
         {
             onReady: function () {
 
-                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.showNewUsers").id).offsetWidth;
-
+                // todo: move all functions outside onReady
                 //cell renderer for rejected users
                 //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
                 function customCellRenderer(innerDiv, oRecord, oColumn, oData) {
@@ -40,6 +39,7 @@
                 };
 
 
+                //todo: rename
                 //entry point
                 //set data source (XMLHttpRequest type  -->> alfresco side webscript that return JSON)
                 var myDataSource = new YAHOO.util.XHRDataSource(Alfresco.constants.PROXY_URI + "com/flex-solution/retrieveUsers");
@@ -60,6 +60,10 @@
                 //set response type
                 myDataSource.responseType = YAHOO.util.XHRDataSource.TYPE_JSON;
 
+
+                // todo: create new function called getColumnDefinitions, also check do you really need all those configs,
+                // todo: also get label from properties
+                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.showNewUsers").id).offsetWidth;
 
                 //set column definition (tables representation)
                 var columnDefinitions = [
@@ -152,6 +156,7 @@
                     }
                 ];
 
+                //todo: rename
                 //config object
                 var myConfigs = {
                     //set tables paginator
@@ -181,7 +186,7 @@
                         //find parent of current cell (<tr>), and find child with class ".rejectReason" in it. Then find inner <div> in found cell.
                         var tooltip = Alfresco.util.createBalloon(oArgs.target.id, {
                             html: "<div style=\"width: auto; max-width: 30em; word-wrap:break-word; text-align: center\">" + rejectReasonValue + "</div>",
-                            width: "auto",
+                            width: "auto"
                         });
                         tooltip.show();
 

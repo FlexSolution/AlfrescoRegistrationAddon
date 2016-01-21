@@ -74,6 +74,8 @@
 
             setupCallback: function (a, args) {
                 var cancelBut = YAHOO.widget.Button.getButton(this.id+ "-form-cancel");
+
+                // todo: use public function like: button.on("click", function() {alert("Test")})
                 cancelBut._setOnClick({
                     fn: function () {
                         window.location = "/share";
@@ -81,8 +83,9 @@
                 });
 
 
-                args[1].runtime.setSubmitAsJSON(true);
-                args[1].runtime.setAJAXSubmit(true,
+                var runtime = args[1].runtime;
+                runtime.setSubmitAsJSON(true);
+                runtime.setAJAXSubmit(true,
                     {
                         successCallback: {
                             fn: function (obj) {
@@ -90,6 +93,7 @@
 
                                     //redirect to home page on success
                                     function onClickBut() {
+                                        // todo: get context from windows.location instead of hardcoded value
                                         window.location = "/share";
                                     }
 
@@ -121,6 +125,7 @@
             },
 
             onReady: function () {
+                //todo: remove objectId
                 objectId = this.id;
                 YAHOO.Bubbling.on("afterFormRuntimeInit", this.setupCallback, this);
             }

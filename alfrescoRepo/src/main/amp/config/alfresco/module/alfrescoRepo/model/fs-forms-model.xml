@@ -2,7 +2,7 @@
 <model name="fs-forms:fs-forms" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>Forms Model for Repo Extension X</description>
+    <description>Forms Model</description>
     <author>flex-solution.com</author>
     <version>1.0</version>
 
@@ -43,7 +43,6 @@
                         <many>false</many>
                     </source>
                     <target>
-                        <!-- TODO: Refactor when group is pulled into content model -->
                         <class>cm:authorityContainer</class>
                         <mandatory>false</mandatory>
                         <many>false</many>
