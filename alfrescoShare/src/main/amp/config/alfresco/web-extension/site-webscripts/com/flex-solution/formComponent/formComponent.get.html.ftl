@@ -9,8 +9,9 @@ new Alfresco.component.CreateUser("${id}");
 <@script type="text/javascript" src="${url.context}/res/components/form/form.js" group="form"/>
 <@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/formComponent.js"/>
 
+<div class="parent-block">
 
-<div id="${id}" class="customForm">
+<div id="${id}" class="registration-block">
 
 
     <div id="${id}-form-container" class="form-container">
@@ -102,6 +103,7 @@ new Alfresco.component.CreateUser("${id}");
             </div>
         </form>
     </div>
+</div>
 </div>
 
 

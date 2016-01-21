@@ -1,6 +1,3 @@
-<@markup id="css" >
-    <@link href="${url.context}/res/components/com/flex-solution/css/formComponent.css" group="form"/>
-</@>
 
 <@markup id="js">
 <#--&lt;#&ndash; JavaScript Dependencies &ndash;&gt;-->
@@ -14,8 +11,8 @@
 <@markup id="html">
     <@uniqueIdDiv>
         <#assign el=args.htmlid?html>
-    <div class="customForm">
-        <@region id="reviewUserForm" scope="page">
+    <div class="application">
+            <@region id="reviewUserForm" scope="page">
         </@>
     </div>
 

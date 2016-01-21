@@ -23,10 +23,10 @@
                 function customCellRenderer(innerDiv, oRecord, oColumn, oData) {
                     if (!oRecord._oData.prop_rejectReason) {
                         //set green background on table row
-                        innerDiv.parentNode.parentNode.style.background = "rgba(11, 228, 13, 0.53)";
+                        innerDiv.parentNode.parentNode.style.background = "rgba(0, 255, 0, 0.27)";
                     } else {
                         //set red background on table row
-                        innerDiv.parentNode.parentNode.style.background = "rgba(255, 0, 0, 0.58)";
+                        innerDiv.parentNode.parentNode.style.background = "rgba(255, 0, 0, 0.45)";
                     }
                     innerDiv.innerHTML = oData;
                 }

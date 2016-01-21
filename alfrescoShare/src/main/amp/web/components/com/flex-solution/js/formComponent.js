@@ -74,11 +74,12 @@
 
 
             setupCallback: function (a, args) {
-                //debugger;
-                //var cancelBut =  YAHOO.widget.Button.getButton(objectId + "-form-cancel");
-                //cancelBut._setOnClick(function(){
-                //    window.location = "/share";
-                //});
+                var cancelBut = YAHOO.widget.Button.getButton(objectId + "-form-cancel");
+                cancelBut._setOnClick({
+                    fn: function () {
+                        window.location = "/share";
+                    }
+                });
 
 
                 args[1].runtime.setSubmitAsJSON(true);

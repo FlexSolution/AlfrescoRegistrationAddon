@@ -34,7 +34,7 @@
                 <mode>create</mode>
                 <submitType>json</submitType>
                 <submissionUrl>/com/flex-solution/userReview</submissionUrl>
-                <showCaption>true</showCaption>
+                <showCaption>false</showCaption>
                 <showCancelButton>false</showCancelButton>
             </properties>
         </component>

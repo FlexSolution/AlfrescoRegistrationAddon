@@ -31,7 +31,7 @@
             <properties>
                 <property name="fs-forms:isRequired">
                     <type>d:boolean</type>
-                    <mandatory>true</mandatory>
+                    <mandatory>false</mandatory>
                 </property>
             </properties>
 
