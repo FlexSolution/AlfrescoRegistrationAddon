@@ -5,10 +5,6 @@
         <hidden-workflows>
             <workflow name="activiti$newUserReview"/>
         </hidden-workflows>
-
-        <hidden-tasks>
-            <task type="fs-newUserRWF:userReviewingTask"/>
-        </hidden-tasks>
     </config>
 
 
