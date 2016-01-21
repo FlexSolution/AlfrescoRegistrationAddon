@@ -1,8 +1,0 @@
-<page>
-    <title>My first page</title>
-    <title-id>page.createUserPage.title</title-id>
-    <description>My first page description</description>
-    <description-id>page.createUserPage.description</description-id>
-    <template-instance>createUserPage</template-instance>
-    <authentication>none</authentication>
-</page>
