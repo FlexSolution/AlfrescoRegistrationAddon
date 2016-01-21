@@ -1,5 +1,18 @@
+
 <alfresco-config>
 
+    <config evaluator="string-compare" condition="Workflow">
+        <hidden-workflows>
+            <workflow name="activiti$newUserReview"/>
+        </hidden-workflows>
+
+        <hidden-tasks>
+            <task type="fs-newUserRWF:userReviewingTask"/>
+        </hidden-tasks>
+    </config>
+
+
+    <!--Forms-->
     <config evaluator="aspect" condition="fs-newUser:newUserAspect">
         <forms>
             <form>
