@@ -4,8 +4,6 @@
      */
     var Dom = YAHOO.util.Dom,
         Event = YAHOO.util.Event;
-    var thisObj = this;
-
     /**
      * Alfresco Slingshot aliases
      */

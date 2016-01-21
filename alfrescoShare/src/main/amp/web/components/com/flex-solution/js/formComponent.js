@@ -5,7 +5,6 @@
     var Dom = YAHOO.util.Dom,
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
-    var objectId;
 
     Alfresco.component.CreateUser = function (htmlId) {
         Alfresco.component.CreateUser.superclass.constructor.call(this, "Alfresco.component.CreateUser", htmlId);
@@ -74,7 +73,7 @@
 
 
             setupCallback: function (a, args) {
-                var cancelBut = YAHOO.widget.Button.getButton(objectId + "-form-cancel");
+                var cancelBut = YAHOO.widget.Button.getButton(this.id+ "-form-cancel");
                 cancelBut._setOnClick({
                     fn: function () {
                         window.location = "/share";
@@ -87,7 +86,6 @@
                     {
                         successCallback: {
                             fn: function (obj) {
-
                                 if (obj.json.status.code == 200) {
 
                                     //redirect to home page on success
@@ -124,7 +122,7 @@
 
             onReady: function () {
                 objectId = this.id;
-                YAHOO.Bubbling.on("afterFormRuntimeInit", this.setupCallback);
+                YAHOO.Bubbling.on("afterFormRuntimeInit", this.setupCallback, this);
             }
 
         }

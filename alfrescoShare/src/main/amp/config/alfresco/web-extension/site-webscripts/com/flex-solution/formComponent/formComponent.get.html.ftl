@@ -47,7 +47,7 @@ new Alfresco.component.CreateUser("${id}");
 
                         <div class="help-text"
                              id="${id}_prop_fs-forms_firstName-help">
-                            Please, provide your first name
+                            ${msg("form.help.firstName")}
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@ new Alfresco.component.CreateUser("${id}");
 
                         <div class="help-text"
                              id="${id}_prop_fs-forms_lastName-help">
-                            Please, provide your last
+                        ${msg("form.help.lastName")}
                         </div>
 
                     </div>
@@ -86,7 +86,7 @@ new Alfresco.component.CreateUser("${id}");
 
                         <div class="help-text"
                              id="${id}_prop_fs-forms_email-help">
-                            Please, provide your email
+                        ${msg("form.help.email")}
                         </div>
                     </div>
 

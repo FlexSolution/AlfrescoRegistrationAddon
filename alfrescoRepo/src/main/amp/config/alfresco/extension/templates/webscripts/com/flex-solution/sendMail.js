@@ -1,6 +1,8 @@
+const TEMPLATES_PATH = "./app:dictionary/app:email_templates/cm:registration-templates/";
 
-function sendMail(templateXPath, templateProps, email, nodeForMailAction) {
-    var children = companyhome.childrenByXPath(templateXPath);
+function sendMail(templateName, templateProps, email, nodeForMailAction) {
+
+    var children = companyhome.childrenByXPath(TEMPLATES_PATH + templateName);
     var mail = actions.create("mail");
     mail.parameters.to = email;
     mail.parameters.subject = "Alfresco registration";
@@ -14,7 +16,7 @@ function sendMail(templateXPath, templateProps, email, nodeForMailAction) {
 }
 
 function prepareTemplateProps(firstName, lastName, email, password, rejectReason){
-    var templateProps = new Object();
+    var templateProps = {};
     templateProps["firstname"] = firstName;
     templateProps["creator"] = {firstname: person.properties["firstName"], lastname: person.properties["lastName"]};
     templateProps["username"] = email;
