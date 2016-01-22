@@ -2,14 +2,16 @@ const TEMPLATES_PATH = "./app:dictionary/app:email_templates/cm:registration-tem
 
 function sendMail(templateName, templateProps, email, nodeForMailAction) {
 
-    var children = companyhome.childrenByXPath(TEMPLATES_PATH + templateName);
+    var xpath = TEMPLATES_PATH + templateName;
+    var children = companyhome.childrenByXPath(xpath);
+
     var mail = actions.create("mail");
     mail.parameters.to = email;
     mail.parameters.subject = "Alfresco registration";
     if(children.length == 1){
         mail.parameters.template = children[0]
     }else{
-        throw "Template exception";
+        throw "Template doesn't exist by the following xpath: " + xpath;
     }
     mail.parameters.template_model= templateProps;
     mail.execute(nodeForMailAction);

@@ -1,7 +1,6 @@
-
-<@markup id="js">
 <#--&lt;#&ndash; JavaScript Dependencies &ndash;&gt;-->
 
+<@markup id="js">
     <@script src="${url.context}/res/components/console/consoletool.js" group="console"/>
     <@script src="${url.context}/res/components/com/flex-solution/js/consoleUserRegConfig.js" group="console"/>
     <@script src="${url.context}/res/modules/simple-dialog.js" group="console"/>
@@ -19,7 +18,7 @@
 
     <script type="text/javascript">
 
-        YAHOO.Bubbling.on("afterFormRuntimeInit", function (a, b) {
+        YAHOO.Bubbling.on("afterFormRuntimeInit", function () {
             new Alfresco.ConsoleUserRegConfig("${el}");
         });
     </script>

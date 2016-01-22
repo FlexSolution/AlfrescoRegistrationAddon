@@ -16,10 +16,12 @@
             onReady: function () {
                 var textareaId = this.id;
 
+                // todo: move function outside onReady
                 function addValidation() {
                     //add onChange validation
                     var when = "change";
                     for (var i = 0; i < 2; i++) {
+                        // todo: please check, maybe, instead of loop you could just assign "change,keyup" to "when" variable
                         YAHOO.Bubbling.fire("registerValidationHandler",
                             {
                                 fieldId: textareaId,
@@ -32,13 +34,15 @@
                     }
                 };
 
+                //todo: move function outside body of YAHOO.Bubbling.on
                 //add or remove validation when approveUserChecked event fired
                 YAHOO.Bubbling.on("approveUserChecked", function (layer, args) {
                     //checkbox value
                     var state = args[1].checked;
                     if (!state) {
                         addValidation();
-                        YAHOO.util.Dom.get(textareaId).parentNode.style.display = "block";
+                        //todo: use Dom.setStyles function here
+                        Dom.get(textareaId).parentNode.style.display = "block";
                     } else {
                         //get form-runtime
                         var thisFormRuntime = Alfresco.util.ComponentManager.findFirst("Alfresco.FormUI").formsRuntime;
@@ -53,14 +57,10 @@
                                 thisFormRuntime.validations.splice(index, 1);
                             }
                         }
+                        //todo: use Dom.setStyles function here
                         YAHOO.util.Dom.get(textareaId).parentNode.style.display = "none";
-
-
                     }
                 });
-
-
-                //YAHOO.Bubbling.on("afterFormRuntimeInit", addValidation);
             }
         }
     );

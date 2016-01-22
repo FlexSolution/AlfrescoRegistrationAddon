@@ -1,5 +1,5 @@
 <webscript>
-    <shortname>New admin-tools tab</shortname>
+    <shortname>registration-config</shortname>
     <description>Add new tab on admin-tools panel</description>
     <url>/com/flex-solution/adminToolsTab</url>
     <family>admin-console</family>

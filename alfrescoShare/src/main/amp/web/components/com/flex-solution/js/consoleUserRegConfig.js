@@ -25,25 +25,27 @@
         Alfresco.util.ComponentManager.register(this);
         Alfresco.util.YUILoaderHelper.require([], this.onComponentsLoaded, this);
 
+        // todo: test
+        //
+        //UserRegConfigPanelHandler = function userRegConfigPanel_constructor() {
+        //    UserRegConfigPanelHandler.superclass.constructor.call(this, "userConfigPanelHandler");
+        //};
+        //
+        //YAHOO.extend(UserRegConfigPanelHandler, Alfresco.ConsolePanelHandler);
+        //
+        //new UserRegConfigPanelHandler();
 
-        UserRegConfigPanelHandler = function userRegConfigPanel_constructor() {
-            UserRegConfigPanelHandler.superclass.constructor.call(this, "userConfigPanelHandler");
-        };
-
-        YAHOO.extend(UserRegConfigPanelHandler, Alfresco.ConsolePanelHandler);
-
-        new UserRegConfigPanelHandler();
         return this;
-    }
+    };
 
 
+    //todo: refactor code: create functions, rename variables
     YAHOO.extend(Alfresco.ConsoleUserRegConfig, Alfresco.ConsoleTool,
         {
             onComponentsLoaded: function () {
 
                 //listen objectFinderReady event
                 YAHOO.Bubbling.on("objectFinderReady", function () {
-
 
                     //create YUI form
                     var myForm = Alfresco.util.ComponentManager.findFirst("Alfresco.FormUI").formsRuntime;
@@ -75,7 +77,7 @@
 
                             groupAssigneeButton._setDisabled(true);
                         }
-                    };
+                    }
 
                     //add onchange event
                     YAHOO.util.Event.on(check.id, "click", onChangeCheckBox);
@@ -83,7 +85,7 @@
                     //create custom validation
                     Alfresco.forms.validation.custom = function mandatoryCustom(field, args, event, form, silent, message) {
                         return check.checked ? Alfresco.forms.validation.mandatory(field, args, event, form, silent, message) : true;
-                    }
+                    };
 
                     //add validation (check whether objectFinder value is present)
                     myForm.addValidation(myForm.formId.replace(/-form/g, "") + "_assoc_fs-forms_groupAssignee", Alfresco.forms.validation.custom, null, "submit", Alfresco.util.message("valid.add.revGroup"));

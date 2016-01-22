@@ -10,7 +10,9 @@
             onReady: function () {
                 Alfresco.util.createYUIButton(this, this.id, this.onClick, {type: "button"}, this.id);
             },
+
             onClick: function () {
+                // todo: remove /share
                 window.location = "/share/page/createUserPage";
             }
         }

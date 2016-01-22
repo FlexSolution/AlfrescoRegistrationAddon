@@ -3,5 +3,5 @@
     <description>Return create user form</description>
     <url>/com/flex-solution/formComponent</url>
     <authentication>user</authentication>
-    <format default="html"></format>
+    <format default="html"/>
 </webscript>

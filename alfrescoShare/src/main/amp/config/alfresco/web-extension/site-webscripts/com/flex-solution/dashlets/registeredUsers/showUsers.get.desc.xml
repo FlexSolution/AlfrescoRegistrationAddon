@@ -1,7 +1,7 @@
 <webscript>
     <shortname>Registered users</shortname>
-    <description>Dispaly users which have aspect</description>
+    <description>Display users which have aspect</description>
     <family>user-dashlet</family>
-    <url>/com/flex-solution/myDashlets/showUsers</url>
+    <url>/com/flex-solution/registered-users</url>
     <authenication>admin</authenication>
 </webscript>

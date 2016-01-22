@@ -1,9 +1,9 @@
 <page>
-    <title>My first page</title>
+    <title>Registration</title>
     <title-id>page.createUserPage.title</title-id>
-    <description>My first page description</description>
+    <description>You could </description>
     <description-id>page.createUserPage.description</description-id>
-    <template-instance>createUserPage</template-instance>
+    <template-instance>You could create new account here</template-instance>
     <authentication>none</authentication>
 
     <components>

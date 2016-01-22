@@ -3,5 +3,5 @@
     <description>Review users</description>
     <url>/com/flex-solution/getReviewingGroup</url>
     <authentication>user</authentication>
-    <format default="json"></format>
+    <format default="json"/>
 </webscript>

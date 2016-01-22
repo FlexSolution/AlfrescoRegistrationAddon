@@ -7,9 +7,7 @@
     new Alfresco.Transitions.reviewNewUser("${fieldHtmlId}").setOptions(
             {
                 currentValue: "${field.value?js_string}"
-            }).setMessages(
-    ${messages}
-    );
+            }).setMessages(${messages});
 })();
 //]]></script>
 

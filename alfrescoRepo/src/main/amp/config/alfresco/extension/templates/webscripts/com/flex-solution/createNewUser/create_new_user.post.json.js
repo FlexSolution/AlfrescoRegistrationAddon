@@ -1,12 +1,12 @@
 <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/lib.js">
-    <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/sendMail.js">
+<import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/sendMail.js">
 
 
 function sendCallback(code, message) {
     status.code = code;
     status.message = message;
     status.redirect = true;
-}
+};
 
 function toRegistrate(firstName, lastName, email, password) {
 
@@ -39,7 +39,7 @@ function startWorkflow(firstName, lastName, email, configFile) {
     var wFlowParams = {};
     wFlowParams["initiator"] = people.getPerson("admin");
     wFlowParams["bpm:groupAssignee"] = search.findNode(configFile.content);
-    wFlowParams["bpm_workflowDescription"] = msg.get("workflow.desc");
+    wFlowParams["bpm:workflowDescription"] = msg.get("workflow.desc");
     wFlowParams["fs-forms:firstName"] = firstName;
     wFlowParams["fs-forms:lastName"] = lastName;
     wFlowParams["fs-forms:email"] = email;
