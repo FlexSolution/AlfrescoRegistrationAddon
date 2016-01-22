@@ -24,7 +24,8 @@ function findUser(email) {
 
     if (user == null) {
         var existingUsers = search.query({
-            query: "+TYPE: \"cm:person\" +@cm\\:email:\"" + email + "\"",
+            query: "+TYPE: \"cm:person\" AND @cm\\:email:\"" + email + "\"",
+            language:"fts-alfresco"
         });
         return existingUsers.length < 1 ? null : existingUsers[0];
     } else {

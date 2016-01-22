@@ -16,7 +16,44 @@
         {
             onReady: function () {
 
-                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.showNewUsers").id).offsetWidth;
+
+                //auto resize table on window resize  function
+                function autoResizeTable(usersDataTable){
+                    //function setPreferableColumnWidth(usersDataTable) {
+                    var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.showNewUsers").id).offsetWidth;
+
+                    var count = 0;
+                    //total width of all visible columns
+                    var totalWidth = 0;
+
+                    //visible columns number
+                    var visibleColumns = 0;
+
+                    var initialWidths = [];
+
+                    usersDataTable.getColumnSet().keys.forEach(function (item, index, array) {
+                        if (count == 0) {
+                            initialWidths.push(array[index].getColEl().offsetWidth);
+                        }
+                        var currentColumnWidth = initialWidths[index];
+                        usersDataTable.setColumnWidth(index, null);
+
+                        //if column visible
+                        if (!array[index].hidden) {
+                            totalWidth = totalWidth + currentColumnWidth;
+                            visibleColumns = visibleColumns + 1;
+                        }
+                    });
+
+                    //set minWidth columns if total column width < dashlet width
+                    if (totalWidth < dashletWidth) {
+                        usersDataTable.getColumnSet().keys.forEach(function (item, index, array) {
+                            usersDataTable.setColumnWidth(index, dashletWidth / visibleColumns - 23)
+                        });
+                    }
+                    count++;
+                }
+
 
                 //cell renderer for rejected users
                 //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
@@ -74,9 +111,9 @@
                             //Ascending
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
+                        width: "auto",
                         //render as text
-                        formatter: YAHOO.widget.DataTable.formatText,
-                        minWidth: dashletWidth/4
+                        formatter: YAHOO.widget.DataTable.formatText
                     },
 
                     {
@@ -90,9 +127,9 @@
                             //Ascending
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
+                        width: "auto",
                         //render as text
-                        formatter: YAHOO.widget.DataTable.formatText,
-                        minWidth: dashletWidth/4
+                        formatter: YAHOO.widget.DataTable.formatText
                     },
 
                     {
@@ -104,8 +141,8 @@
                             sortFunction: compareFunction,
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
-                        formatter: YAHOO.widget.DataTable.formatText,
-                        minWidth: dashletWidth/4
+                        width: "auto",
+                        formatter: YAHOO.widget.DataTable.formatText
                     },
                     {
                         key: "prop_email",
@@ -116,8 +153,8 @@
                             sortFunction: compareFunction,
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
-                        formatter: YAHOO.widget.DataTable.formatText,
-                        minWidth: dashletWidth/4
+                        width: "auto",
+                        formatter: YAHOO.widget.DataTable.formatText
                     },
 
                     {
@@ -129,11 +166,11 @@
                             sortFunction: compareFunction,
                             defaultDir: YAHOO.widget.DataTable.CLASS_ASC
                         },
+                        width: "auto",
                         //column renderer function
                         formatter: customCellRenderer,
                         //cells class of current column
-                        className: "answerDate",
-                        minWidth: dashletWidth/4
+                        className: "answerDate"
                     },
 
                     //this column need that pull data about reject reason
@@ -163,6 +200,14 @@
 
                 //create YAHOO table (table container, column definitions, data source, config object)
                 var usersDataTable = new YAHOO.widget.DataTable("content", columnDefinitions, myDataSource, myConfigs);
+
+                autoResizeTable(usersDataTable);
+
+
+                window.addEventListener('resize', function(){
+                    autoResizeTable(usersDataTable)
+                });
+
 
                 //add event listener to table
                 //oArgs object that contains event object and event source (table cell element itself)

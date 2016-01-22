@@ -1,4 +1,4 @@
-
+<@link href="${url.context}/res/components/com/flex-solution/css/registredUsersDashlet.css"/>
 <@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/showUsersDashlet.js"/>
 <script type="text/javascript">
     var dash = new Alfresco.widget.DashletResizer("${args.htmlid}", "${instance.object.id}").setOptions({});
@@ -29,7 +29,7 @@
         <#assign el=args.htmlid?html>
     <div class="dashlet" id="${el}-users-dashlet">
         <div class="title">${msg("title")}</div>
-        <div id="content" class="body scrollableList" <#if args.height??>style="height: ${args.height?html}px;"</#if>>
+        <div id="content" class="body scrollableList"  <#if args.height??>style="height: ${args.height?html}px;"</#if>>
         </div>
     </div>
     </@>

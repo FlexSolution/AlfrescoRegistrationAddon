@@ -51,7 +51,7 @@
                                                     <p>${creator.firstname} ${creator.lastname} has rejected your an
                                                         Alfresco ${productName!""} account.</p>
                                                     
-                                                    <p>Reject reason: ${rejectReason!"not provided"}</p>
+                                                    <p><b>Reject reason:<b> ${rejectReason!"not provided"}</p>
 
                                                     <p>Sincerely,<br/>
                                                         Alfresco ${productName!""}</p>
