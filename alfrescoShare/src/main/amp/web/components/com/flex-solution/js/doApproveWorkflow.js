@@ -6,6 +6,7 @@
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
 
+    //todo: Rename objects, first letter should be capital
     Alfresco.doApprove = function (fieldHtmlId) {
         Alfresco.doApprove.superclass.constructor.call(this, "Alfresco.doApprove", fieldHtmlId);
         return this;
@@ -31,6 +32,7 @@
 
 
                 //fire checkbox status event after form-runtime init
+                //todo: why do you need inner function???
                 YAHOO.Bubbling.on("afterFormRuntimeInit", function (event, args, scope) {
                     variables.runtime = args[1].runtime;
                     this.onChangeChBox(event, variables)

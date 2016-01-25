@@ -91,6 +91,7 @@
             },
 
 
+            //todo: are you sure that there is no better way to get checkbox?
             findCheckbox: function () {
                 var inputs = document.getElementsByTagName("input");
 

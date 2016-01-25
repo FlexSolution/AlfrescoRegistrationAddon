@@ -6,6 +6,7 @@
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
 
+    //todo: rename. First letter should be capital
     Alfresco.rejectedReason = function (fieldHtmlId) {
         Alfresco.rejectedReason.superclass.constructor.call(this, "Alfresco.rejectedReason", fieldHtmlId);
         return this;
@@ -16,7 +17,6 @@
             addValidation: function (scope) {
 
                 var when = ["change", "keyup"];
-
 
                 //add validations
                 when.forEach(function (item) {

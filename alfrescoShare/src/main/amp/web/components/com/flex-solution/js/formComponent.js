@@ -82,7 +82,6 @@
                         }
                     });
 
-
                 var runtime = args[1].runtime;
                 runtime.setSubmitAsJSON(true);
                 runtime.setAJAXSubmit(true,
@@ -92,6 +91,7 @@
                                 if (obj.json.status.code == 200) {
 
                                     //redirect to home page on success
+                                    //todo: remove /share
                                     function onClickBut() {
                                         window.location = "/share";
                                     }
@@ -108,6 +108,7 @@
 
                         failureCallback: {
                             fn: function (obj) {
+                                // todo: use displayPrompt function for all errors
                                 if (obj.json.status.code == 400) {
                                     Alfresco.util.PopupManager.displayMessage({
                                         text: obj.json.message,

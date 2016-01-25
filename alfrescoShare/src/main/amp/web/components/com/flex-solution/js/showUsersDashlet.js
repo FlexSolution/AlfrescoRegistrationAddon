@@ -6,6 +6,7 @@
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
 
+    //todo: rename. First letter should be capital
     Alfresco.showNewUsers = function (htmlId) {
         Alfresco.showNewUsers.superclass.constructor.call(this, "Alfresco.showNewUsers", htmlId);
         return this;
@@ -37,7 +38,7 @@
             },
 
             getColumnDefinition: function () {
-                var columnDef = [
+                return [
                     {
                         key: "prop_userName",
                         label: this.msg("label.userName"),
@@ -121,10 +122,10 @@
                         hidden: true
                     }
                 ];
-                return columnDef;
             },
 
             getTableConfig: function () {
+                //todo: use inline variable here
                 var config = {
                     //set tables paginator
                     paginator: new YAHOO.widget.Paginator({
@@ -137,8 +138,17 @@
             //cell renderer for rejected users
             //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
             customCellRenderer: function (innerDiv, oRecord, oColumn, oData) {
+
+                //todo: I think you could use more easier metod in this place:
+                //
+                //var background = !oRecord._oData.prop_rejectReason ? "rgba(0, 255, 0, 0.27)" : "rgba(255, 0, 0, 0.45)";
+                //
+                //YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);
+
+
                 if (!oRecord._oData.prop_rejectReason) {
                     //set green background on table row
+                    //todo: you shouldn't hardcode color, you should receive it from options of current object
                     YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", "rgba(0, 255, 0, 0.27)");
                 } else {
                     //set red background on table row
