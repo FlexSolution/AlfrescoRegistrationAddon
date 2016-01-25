@@ -17,10 +17,7 @@
 
 
     <script type="text/javascript">
-
-        YAHOO.Bubbling.on("afterFormRuntimeInit", function () {
             new Alfresco.ConsoleUserRegConfig("${el}");
-        });
     </script>
     </@>
 </@>

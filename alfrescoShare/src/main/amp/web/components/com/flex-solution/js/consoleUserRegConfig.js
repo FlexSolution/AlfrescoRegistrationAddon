@@ -23,133 +23,150 @@
         Alfresco.ConsoleUserRegConfig.superclass.constructor.call(this, htmlId);
 
         Alfresco.util.ComponentManager.register(this);
-        Alfresco.util.YUILoaderHelper.require([], this.onComponentsLoaded, this);
-
-        // todo: test
-        //
-        //UserRegConfigPanelHandler = function userRegConfigPanel_constructor() {
-        //    UserRegConfigPanelHandler.superclass.constructor.call(this, "userConfigPanelHandler");
-        //};
-        //
-        //YAHOO.extend(UserRegConfigPanelHandler, Alfresco.ConsolePanelHandler);
-        //
-        //new UserRegConfigPanelHandler();
+        Alfresco.util.YUILoaderHelper.require([], this.onReady, this);
 
         return this;
     };
 
 
-    //todo: refactor code: create functions, rename variables
     YAHOO.extend(Alfresco.ConsoleUserRegConfig, Alfresco.ConsoleTool,
         {
-            onComponentsLoaded: function () {
+            setupFormConfigs: function (a, args) {
 
-                //listen objectFinderReady event
-                YAHOO.Bubbling.on("objectFinderReady", function () {
+                var formRuntime = args[1].runtime;
+                formRuntime.addValidation(formRuntime.formId.replace(/-form/g, "") + "_assoc_fs-forms_groupAssignee",
+                    this.addCustomValidation, {checkbox: this.findCheckbox()}, "submit", Alfresco.util.message("valid.add.revGroup"));
 
-                    //create YUI form
-                    var myForm = Alfresco.util.ComponentManager.findFirst("Alfresco.FormUI").formsRuntime;
+                formRuntime.setSubmitAsJSON(true);
+                formRuntime.setAJAXSubmit(true,
 
-                    //get objectFinder element
-                    var objFinder = Alfresco.util.ComponentManager.findFirst("Alfresco.ObjectRenderer").objectFinder;
-
-                    //get YUI button group assignee
-                    var groupAssigneeButton = objFinder.widgets.addButton;
-
-                    //initially set disabled
-                    groupAssigneeButton._setDisabled(true);
-
-                    //get  user requires review checkbox
-                    var check = Dom.get(myForm.formId.replace(/-form/g, "") + "_prop_fs-forms_isRequired-entry");
-
-
-                    function onChangeCheckBox() {
-                        if (check.checked) {
-                            groupAssigneeButton._setDisabled(false);
-                        } else {
-                            //manually remove objectFinder value
-                            delete objFinder.selectedItems[objFinder.options.selectedValue];
-                            objFinder.singleSelectedItem = null;
-                            YAHOO.Bubbling.fire("renderCurrentValue",
-                                {
-                                    eventGroup: objFinder
+                    {
+                        successCallback: {
+                            fn: function () {
+                                Alfresco.util.PopupManager.displayMessage({
+                                    text: Alfresco.util.message("review.group.onchange")
                                 });
 
-                            groupAssigneeButton._setDisabled(true);
-                        }
-                    }
-
-                    //add onchange event
-                    YAHOO.util.Event.on(check.id, "click", onChangeCheckBox);
-
-                    //create custom validation
-                    Alfresco.forms.validation.custom = function mandatoryCustom(field, args, event, form, silent, message) {
-                        return check.checked ? Alfresco.forms.validation.mandatory(field, args, event, form, silent, message) : true;
-                    };
-
-                    //add validation (check whether objectFinder value is present)
-                    myForm.addValidation(myForm.formId.replace(/-form/g, "") + "_assoc_fs-forms_groupAssignee", Alfresco.forms.validation.custom, null, "submit", Alfresco.util.message("valid.add.revGroup"));
-                    myForm.setValidateOnSubmit(true);
-                    myForm.setSubmitElements(YAHOO.widget.Button.getButton(myForm.formId + "-submit"));
-                    myForm.setSubmitAsJSON(true);
-
-
-                    myForm.setAJAXSubmit(true,
-
-                        {
-                            successCallback: {
-                                fn: function () {
-                                    Alfresco.util.PopupManager.displayMessage({
-                                        text: "Saved"
-                                    });
-
-                                },
-                                scope: this
-                            },
-
-                            failureCallback: {
-                                fn: function (obj) {
-                                    if (obj.json.status.code == 400) {
-                                        Alfresco.util.PopupManager.displayMessage({
-                                            text: obj.json.message,
-                                            displayTime: 5
-                                        });
-                                    } else
-                                        Alfresco.util.PopupManager.displayPrompt({
-                                            text: obj.json.message
-                                        })
-                                },
-                                scope: this
-                            }
-                        });
-
-                    myForm.init();
-
-
-                    //set initially reviewing group from file
-                    Alfresco.util.Ajax.request({
-                        url: Alfresco.constants.PROXY_URI + "com/flex-solution/getReviewingGroup",
-                        method: Alfresco.util.Ajax.GET,
-                        format: "json",
-
-                        successCallback: {
-                            fn: function (obj) {
-                                if (obj.json.groupAssignee) {
-                                    objFinder.selectItems(obj.json.groupAssignee);
-                                    check.checked = true;
-                                }
                             },
                             scope: this
                         },
 
                         failureCallback: {
                             fn: function (obj) {
+                                if (obj.json.status.code == 400) {
+                                    Alfresco.util.PopupManager.displayMessage({
+                                        text: obj.json.message,
+                                        displayTime: 5
+                                    });
+                                } else
+                                    Alfresco.util.PopupManager.displayPrompt({
+                                        text: obj.json.message
+                                    })
                             },
                             scope: this
                         }
                     });
+
+            },
+
+
+            onObjectFinderReady: function (a, args) {
+
+                ////get objectFinder element
+                var objFinder = args[1].eventGroup;
+
+
+                if (objFinder.currentValueHtmlId.indexOf("fs-forms_groupAssignee") == -1) {
+                    return;
+                }
+
+                //get YUI button group assignee
+                var groupAssigneeButton = objFinder.widgets.addButton;
+
+                //initially set disabled
+                groupAssigneeButton.set("disabled", true);
+
+
+                //get  user requires review checkbox
+                var checkbox = this.findCheckbox();
+
+                //add onchange event
+                YAHOO.util.Event.on(checkbox.id, "click", this.onChangeCheckBox, objFinder);
+
+                this.pullReviewingGroup(objFinder, checkbox);
+            },
+
+
+            //create custom validation
+            addCustomValidation: function (field, args, event, form, silent, message) {
+                return args.checkbox.checked ? Alfresco.forms.validation.mandatory(field, args, event, form, silent, message) : true;
+            },
+
+
+            findCheckbox: function () {
+                var inputs = document.getElementsByTagName("input");
+
+                for (var index = 0; index < inputs.length; index++) {
+                    if (inputs[index].type == "checkbox" && (inputs[index].id.indexOf("_prop_fs-forms_isRequired-entry") != -1)) {
+                        return inputs[index];
+                    }
+                }
+
+                return null;
+            },
+
+
+            onChangeCheckBox: function (scope, objFinder) {
+                ;
+                if (scope.currentTarget.checked) {
+                    objFinder.widgets.addButton.set("disabled", false);
+                    return;
+                }
+                //manually remove objectFinder value
+                delete objFinder.selectedItems[objFinder.options.selectedValue];
+                objFinder.singleSelectedItem = null;
+                YAHOO.Bubbling.fire("renderCurrentValue",
+                    {
+                        eventGroup: objFinder
+                    });
+
+                objFinder.widgets.addButton.set("disabled", true);
+            },
+
+
+            pullReviewingGroup: function (objFinder, checkbox) {
+
+                //set initially reviewing group from file
+                Alfresco.util.Ajax.request({
+                    url: Alfresco.constants.PROXY_URI + "com/flex-solution/getReviewingGroup",
+                    method: Alfresco.util.Ajax.GET,
+                    format: "json",
+
+                    successCallback: {
+                        fn: function (obj) {
+                            if (obj.json.groupAssignee) {
+                                objFinder.selectItems(obj.json.groupAssignee);
+                                checkbox.checked = true;
+                            }
+                        },
+                        scope: this
+                    },
+
+                    failureCallback: {
+                        fn: function (obj) {
+                        },
+                        scope: this
+                    }
                 });
+            },
+
+
+            onReady: function () {
+                YAHOO.Bubbling.on("afterFormRuntimeInit", this.setupFormConfigs, this);
+
+                ////listen objectFinderReady event
+                YAHOO.Bubbling.on("objectFinderReady", this.onObjectFinderReady, this);
             }
-        }
-    );
+
+        });
 })();

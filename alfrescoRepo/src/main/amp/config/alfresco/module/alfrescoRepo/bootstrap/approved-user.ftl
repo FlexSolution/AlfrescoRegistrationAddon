@@ -31,7 +31,7 @@
                                                 <table cellpadding="0" cellspacing="0" border="0">
                                                     <tr>
                                                         <td>
-                                                            <img src="${url.serverPath}/share/res/components/images/no-user-photo-64.png"
+                                                            <img src="${shareUrl}/res/components/images/no-user-photo-64.png"
                                                                  alt="" width="64" height="64" border="0"
                                                                  style="padding-right: 20px;"/>
                                                         </td>
@@ -52,7 +52,7 @@
                                                         Alfresco ${productName!""} account for you.</p>
 
                                                     <p>Click this link to login:<br/>
-                                                        <br/><a href="${url.serverPath}/share">${url.serverPath}/share</a></p>
+                                                        <br/><a href="${shareUrl}">${shareUrl}</a></p>
 
                                                     <p>Your login details are:<br/>
                                                         <br/>Username: <b>${username}</b>
@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td style="padding: 10px 30px;">
-                                    <img src="${url.serverPath}/share/themes/default/images/app-logo.png" alt="" width="117"
+                                    <img src="${shareUrl}/themes/default/images/app-logo.png" alt="" width="117"
                                          height="48" border="0"/>
                                 </td>
                             </tr>

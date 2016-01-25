@@ -13,27 +13,36 @@
 
     YAHOO.extend(Alfresco.doApprove, Alfresco.component.Base,
         {
+
+            onChangeChBox: function (event, variables) {
+                YAHOO.Bubbling.fire("approveUserChecked",
+                    {
+                        checked: variables.checkbox.checked,
+                        runtime: variables.runtime
+                    });
+            },
+
             onReady: function () {
-                var checkbox = YAHOO.util.Dom.get(this.id + "-entry");
+
+                var variables =
+                {
+                    checkbox: YAHOO.util.Dom.get(this.id + "-entry")
+                };
+
 
                 //fire checkbox status event after form-runtime init
-                YAHOO.Bubbling.on("afterFormRuntimeInit", onChangeChBox);
+                YAHOO.Bubbling.on("afterFormRuntimeInit", function (event, args, scope) {
+                    variables.runtime = args[1].runtime;
+                    this.onChangeChBox(event, variables)
+                }, this);
 
-                // todo: move function outside onReady
-                function onChangeChBox(){
-                    YAHOO.Bubbling.fire("approveUserChecked",
-                        {
-                            checked: checkbox.checked
-                        });
-                }
-
-                YAHOO.util.Event.on(checkbox, "change", onChangeChBox);
-
-
+                YAHOO.util.Event.on(variables.checkbox, "change", this.onChangeChBox, variables);
             }
         }
-    );
-})();
+    )
+    ;
+})
+();
 
 
 

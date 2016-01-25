@@ -1,3 +1,13 @@
 <template-instance>
-    <template-type>createUserPageTemplates/createUserPage</template-type>
+    <template-type>registration/createUserPage</template-type>
+
+    <components>
+        <component>
+            <scope>template</scope>
+            <region-id>registrationForm</region-id>
+            <source-id>registrationForm</source-id>
+            <url>/com/flex-solution/formComponent</url>
+        </component>
+    </components>
+
 </template-instance>

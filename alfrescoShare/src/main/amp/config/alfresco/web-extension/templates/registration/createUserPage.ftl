@@ -3,7 +3,7 @@
 <@templateHeader/>
 
 <@templateBody type="alfresco-guest">
-    <@region id="registrationForm" scope="page" />
+    <@region id="registrationForm" scope="template" />
 </@>
 
 <@templateFooter/>

@@ -12,8 +12,7 @@
             },
 
             onClick: function () {
-                // todo: remove /share
-                window.location = "/share/page/createUserPage";
+                window.location = window.location.pathname + "/createUserPage";
             }
         }
     )

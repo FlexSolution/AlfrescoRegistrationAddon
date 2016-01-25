@@ -73,14 +73,14 @@
 
 
             setupCallback: function (a, args) {
-                var cancelBut = YAHOO.widget.Button.getButton(this.id+ "-form-cancel");
+                var cancelBut = YAHOO.widget.Button.getButton(this.id + "-form-cancel");
 
-                // todo: use public function like: button.on("click", function() {alert("Test")})
-                cancelBut._setOnClick({
-                    fn: function () {
-                        window.location = "/share";
-                    }
-                });
+                cancelBut.set("onclick",
+                    {
+                        fn: function () {
+                            window.location = window.location.href.replace(/\/createUserPage/g, "");
+                        }
+                    });
 
 
                 var runtime = args[1].runtime;
@@ -93,7 +93,6 @@
 
                                     //redirect to home page on success
                                     function onClickBut() {
-                                        // todo: get context from windows.location instead of hardcoded value
                                         window.location = "/share";
                                     }
 
@@ -125,8 +124,6 @@
             },
 
             onReady: function () {
-                //todo: remove objectId
-                objectId = this.id;
                 YAHOO.Bubbling.on("afterFormRuntimeInit", this.setupCallback, this);
             }
 

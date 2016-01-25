@@ -9,10 +9,10 @@ new Alfresco.component.CreateUser("${id}");
 <@script type="text/javascript" src="${url.context}/res/components/form/form.js" group="form"/>
 <@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/formComponent.js"/>
 
+
 <div class="parent-block">
 
 <div id="${id}" class="registration-block">
-
 
     <div id="${id}-form-container" class="form-container">
         <div id="comp-logo" class="theme-company-logo"></div>
@@ -22,11 +22,11 @@ new Alfresco.component.CreateUser("${id}");
         </div>
 
         <form id="${id}-form" method="post" accept-charset="utf-8"
-              action="/share/proxy/alfresco-noauth/com/flex-solution/createNewUser">
+              action="${url.context}/proxy/alfresco-noauth/com/flex-solution/createNewUser">
 
 
 
-            <input id="${id}-form-redirect" name="alf_redirect" type="hidden" value="/share"/>
+            <input id="${id}-form-redirect" name="alf_redirect" type="hidden" value="${url.context}"/>
 
             <div id="${id}-form-fields" class="form-fields">
 
@@ -41,7 +41,7 @@ new Alfresco.component.CreateUser("${id}");
 
                         <span class="help-icon">
                             <img id="${id}_prop_fs-forms_firstName-help-icon"
-                                 src="/share/res/components/form/images/help.png"
+                                 src="${url.context}/res/components/form/images/help.png"
                                  title="Click to show and hide help text for the field." tabindex="0"/>
                         </span>
 
@@ -59,7 +59,7 @@ new Alfresco.component.CreateUser("${id}");
 
                           <span class="help-icon">
                              <img id="${id}_prop_fs-forms_lastName-help-icon"
-                                  src="/share/res/components/form/images/help.png"
+                                  src="${url.context}/res/components/form/images/help.png"
                                   title="Click to show and hide help text for the field."
                                   tabindex="0"/>
                           </span>
@@ -79,7 +79,7 @@ new Alfresco.component.CreateUser("${id}");
 
                         <span class="help-icon">
                             <img id="${id}_prop_fs-forms_email-help-icon"
-                                 src="/share/res/components/form/images/help.png"
+                                 src="${url.context}/res/components/form/images/help.png"
                                  title="Click to show and hide help text for the field."
                                  tabindex="0"/>
                         </span>

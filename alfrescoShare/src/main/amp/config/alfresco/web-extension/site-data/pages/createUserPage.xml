@@ -3,15 +3,6 @@
     <title-id>page.createUserPage.title</title-id>
     <description>You could </description>
     <description-id>page.createUserPage.description</description-id>
-    <template-instance>You could create new account here</template-instance>
+    <template-instance>createUserPage</template-instance>
     <authentication>none</authentication>
-
-    <components>
-        <component>
-            <scope>page</scope>
-            <region-id>registrationForm</region-id>
-            <source-id>registrationForm</source-id>
-            <url>/com/flex-solution/formComponent</url>
-        </component>
-    </components>
 </page>

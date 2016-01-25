@@ -17,7 +17,7 @@
                             }
                         ]
             });
-    new Alfresco.showNewUsers("${args.htmlid}");
+    new Alfresco.showNewUsers("${args.htmlid}").setMessages(${messages});
 </script>
 
 <@markup id="widgets">
