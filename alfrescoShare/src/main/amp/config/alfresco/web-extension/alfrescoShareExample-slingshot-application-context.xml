@@ -18,6 +18,7 @@
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
+                <!-- Move all properties in 1 file-->
                 <value>alfresco.web-extension.messages.fs-newUser-model</value>
                 <value>alfresco.web-extension.messages.fs-forms-model</value>
                 <value>alfresco.web-extension.messages.fs-newUserReviewWorkflow-model</value>

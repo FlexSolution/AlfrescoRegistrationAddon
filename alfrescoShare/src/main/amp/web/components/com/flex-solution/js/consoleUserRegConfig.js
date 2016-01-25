@@ -4,18 +4,6 @@
      */
     var Dom = YAHOO.util.Dom,
         Event = YAHOO.util.Event;
-    /**
-     * Alfresco Slingshot aliases
-     */
-
-    /**
-     * ConsoleTagManagement tool component constructor.
-     *
-     * @param {String} htmlId The HTML id of the parent element
-     * @return {UserRegConfigPanelHandler} The new component instance
-     * @constructor
-     */
-
 
 
     Alfresco.ConsoleUserRegConfig = function (htmlId) {
@@ -53,6 +41,7 @@
 
                         failureCallback: {
                             fn: function (obj) {
+                                // todo: display prompt for any error
                                 if (obj.json.status.code == 400) {
                                     Alfresco.util.PopupManager.displayMessage({
                                         text: obj.json.message,
@@ -74,7 +63,6 @@
 
                 ////get objectFinder element
                 var objFinder = args[1].eventGroup;
-
 
                 if (objFinder.currentValueHtmlId.indexOf("fs-forms_groupAssignee") == -1) {
                     return;
@@ -117,7 +105,6 @@
 
 
             onChangeCheckBox: function (scope, objFinder) {
-                ;
                 if (scope.currentTarget.checked) {
                     objFinder.widgets.addButton.set("disabled", false);
                     return;
@@ -154,6 +141,7 @@
 
                     failureCallback: {
                         fn: function (obj) {
+                        //    todo: why it is empty
                         },
                         scope: this
                     }

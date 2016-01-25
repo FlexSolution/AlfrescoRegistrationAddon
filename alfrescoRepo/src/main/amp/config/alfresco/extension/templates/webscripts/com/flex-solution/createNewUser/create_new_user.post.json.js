@@ -37,6 +37,7 @@ function findUser(email) {
 function startWorkflow(firstName, lastName, email, configFile) {
     var wFlow = workflow.getDefinitionByName("activiti$newUserReview");
     var wFlowParams = {};
+    //todo: check "person" object maybe admin and use it instead of people.getPerson("admin")
     wFlowParams["initiator"] = people.getPerson("admin");
     wFlowParams["bpm:groupAssignee"] = search.findNode(configFile.content);
     wFlowParams["bpm:workflowDescription"] = msg.get("workflow.desc");
@@ -74,6 +75,7 @@ function main() {
     }
     
     var password = passGenerator.genPass();
+    // todo: I think it is unused variable "templateProps"
     var templateProps = prepareTemplateProps();
     var templateName = "cm:approved-user.ftl";
     var nodeForMailAction = toRegistrate(firstName, lastName, email, password);

@@ -10,6 +10,7 @@ function getConfigFile() {
 
 function createConfigFile() {
     //get Data Dictionary
+    //todo: move newUserReviewingGroup.txt into the folder /Data Dictionary/flex-solution.com/Registration Addon
     var results = companyhome.childrenByXPath("./app:dictionary");
     return results[0].createFile("newUserReviewingGroup.txt")
 }

@@ -7,6 +7,7 @@
             <customizations>
                 <customization>
                     <targetPackageRoot>org.alfresco.components.guest</targetPackageRoot>
+                    <!-- todo: use here the following path: com.flex-solution.guest-->
                     <sourcePackageRoot>org.alfresco.customization.guest</sourcePackageRoot>
                 </customization>
             </customizations>
