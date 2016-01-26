@@ -92,7 +92,7 @@
 
                                     //redirect to home page on success
                                     function onClickBut() {
-                                        window.location = window.location = window.location.origin + Alfresco.constants.URL_PAGECONTEXT;
+                                        window.location = window.location = window.location.origin + Alfresco.constants.URL_CONTEXT;
                                     }
 
                                     Alfresco.util.PopupManager.displayPrompt({
