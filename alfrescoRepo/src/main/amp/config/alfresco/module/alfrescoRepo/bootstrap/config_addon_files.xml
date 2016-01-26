@@ -29,7 +29,7 @@
                             <cm:description>It is config file. Do not remove it</cm:description>
                             <cm:content></cm:content>
                             <cm:title></cm:title>
-                            <cm:author>Me</cm:author>
+                            <cm:author>flex-solution.com</cm:author>
                             <cm:name>newUserReviewingGroup.txt</cm:name>
                         </view:properties>
                         <view:associations></view:associations>

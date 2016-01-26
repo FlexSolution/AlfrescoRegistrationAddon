@@ -18,7 +18,6 @@
           class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
         <property name="resourceBundles">
             <list>
-                <!-- Move all properties in 1 file-->
                 <value>alfresco.web-extension.messages.registration-addon</value>
             </list>
         </property>
