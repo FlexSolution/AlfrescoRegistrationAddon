@@ -7,7 +7,6 @@
         Selector = YAHOO.util.Selector;
 
     Alfresco.ShowNewUsers = function (htmlId) {
-        debugger;
         Alfresco.ShowNewUsers.superclass.constructor.call(this, "Alfresco.ShowNewUsers", htmlId);
         return this;
     };
@@ -216,7 +215,6 @@
 
 
             onReady: function () {
-                debugger;
 
                 //create YAHOO table (table container, column definitions, data source, config object)
                 var usersDataTable = new YAHOO.widget.DataTable("content", this.getColumnDefinition(), this.getDataSource(),
