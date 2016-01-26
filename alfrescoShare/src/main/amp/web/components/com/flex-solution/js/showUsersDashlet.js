@@ -7,12 +7,21 @@
         Selector = YAHOO.util.Selector;
 
     Alfresco.ShowNewUsers = function (htmlId) {
+        debugger;
         Alfresco.ShowNewUsers.superclass.constructor.call(this, "Alfresco.ShowNewUsers", htmlId);
         return this;
     };
 
     YAHOO.extend(Alfresco.ShowNewUsers, Alfresco.component.Base,
         {
+
+            options: {
+                background: {
+                    approve: "rgba(0, 255, 0, 0.27)",
+                    reject: "rgba(255, 0, 0, 0.45)"
+                },
+                rowsPerPage: 10
+            },
 
             getDataSource: function () {
                 //set data source (XMLHttpRequest type  -->> alfresco side webscript that return JSON)
@@ -123,16 +132,6 @@
                 ];
             },
 
-            getTableConfig: function () {
-                return {
-                    paginator: new YAHOO.widget.Paginator({rowsPerPage: 10}),
-                    background: {
-                        approve: "rgba(0, 255, 0, 0.27)",
-                        reject: "rgba(255, 0, 0, 0.45)",
-                    }
-                };
-            },
-
             //cell renderer for rejected users
             //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
             customCellRenderer: function (innerDiv, oRecord, oColumn, oData) {
@@ -217,9 +216,14 @@
 
 
             onReady: function () {
+                debugger;
 
                 //create YAHOO table (table container, column definitions, data source, config object)
-                var usersDataTable = new YAHOO.widget.DataTable("content", this.getColumnDefinition(), this.getDataSource(), this.getTableConfig());
+                var usersDataTable = new YAHOO.widget.DataTable("content", this.getColumnDefinition(), this.getDataSource(),
+                    {
+                        background: this.options.background,
+                        paginator: new YAHOO.widget.Paginator({rowsPerPage: this.options.rowsPerPage})
+                    });
 
                 this.autoResizeTable(null, usersDataTable);
 

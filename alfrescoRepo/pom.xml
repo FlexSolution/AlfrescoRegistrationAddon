@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flex.solution</groupId>
     <!-- todo: rename module to "registration-repo" -->
-    <artifactId>alfrescoRepo</artifactId>
+    <artifactId>registration-repo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>alfrescoRepo Repository AMP project</name>
     <packaging>amp</packaging>
