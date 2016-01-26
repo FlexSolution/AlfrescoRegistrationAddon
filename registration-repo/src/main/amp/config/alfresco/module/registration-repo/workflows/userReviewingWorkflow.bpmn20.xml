@@ -11,8 +11,8 @@
         <userTask id="reviewUserTask" name="User review" activiti:formKey="fs-newUserRWF:userReviewingTask"
                   activiti:candidateGroups="${bpm_groupAssignee.properties.authorityName}">
             <extensionElements>
-                <activiti:taskListener event="complete"
-                                       class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+                <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+                    <activiti:field name="runAs"><activiti:string>admin</activiti:string></activiti:field>
                     <activiti:field name="script">
                         <activiti:string>
                                 &lt;import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/saveNewUser.js"&gt;

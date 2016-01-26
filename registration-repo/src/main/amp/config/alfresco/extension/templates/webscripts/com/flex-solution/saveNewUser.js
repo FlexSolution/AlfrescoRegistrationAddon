@@ -11,21 +11,25 @@
     var password = passGenerator.genPass();
     var templateName = (prop_isApprove == true) ? "cm:approved-user.ftl" : "cm:rejected-user.ftl";
     var subject = "Alfresco registration";
+    var reviewer = search.query({
+        query: "+TYPE: \"cm:person\" AND @cm\\:userName:\"" + task.getAssignee() + "\"",
+        language:"fts-alfresco"
+    })[0];
 
-    createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason);
+    createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
 
     //send email
-    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason), prop_email, subject, userhome);
+    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, userhome, reviewer);
 })();
 
 //create new cm:person and set needed aspects and properties
-function createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason) {
+function createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
 
     var newUser = people.createPerson(prop_email, prop_firstName, prop_lastName, prop_email, password, prop_isApprove.booleanValue());
 
     newUser.addAspect("fs-newUser:newUserAspect");
 
-    newUser.createAssociation(person, "fs-newUser:whoReviewed");
+    newUser.createAssociation(reviewer, "fs-newUser:whoReviewed");
 
     if (prop_isApprove == false) {
         newUser.addAspect("fs-newUser:newRejectedUserAspect");

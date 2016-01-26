@@ -78,7 +78,7 @@ function main() {
     var nodeForMailAction = toRegistrate(firstName, lastName, email, password);
     var subject = "Alfresco registration";
     
-    sendMail(templateName, prepareTemplateProps(firstName, lastName, email, password, null), email, subject, nodeForMailAction);
+    sendMail(templateName, prepareTemplateProps(firstName, lastName, email, password, null, person), email, subject, nodeForMailAction);
     sendCallback(200, msg.get("success.without.review"));
 }
 

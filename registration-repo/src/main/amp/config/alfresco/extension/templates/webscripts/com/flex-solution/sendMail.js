@@ -16,9 +16,9 @@ function sendMail(templateName, templateProps, email, subject, nodeForMailAction
     mail.execute(nodeForMailAction);
 }
 
-function prepareTemplateProps(firstName, lastName, email, password, rejectReason){
+function prepareTemplateProps(firstName, lastName, email, password, rejectReason, reviewer){
     var templateProps = {};
-    templateProps["creator"] = {firstname: person.properties["firstName"], lastname: person.properties["lastName"]};
+    templateProps["creator"] = {firstname: reviewer.properties["firstName"], lastname: reviewer.properties["lastName"]};
     templateProps["username"] = email;
     templateProps["password"] = password;
     templateProps["firstname"] = firstName;
