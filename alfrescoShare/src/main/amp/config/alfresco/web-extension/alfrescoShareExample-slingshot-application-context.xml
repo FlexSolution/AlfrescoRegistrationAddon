@@ -19,13 +19,7 @@
         <property name="resourceBundles">
             <list>
                 <!-- Move all properties in 1 file-->
-                <value>alfresco.web-extension.messages.fs-newUser-model</value>
-                <value>alfresco.web-extension.messages.fs-forms-model</value>
-                <value>alfresco.web-extension.messages.fs-newUserReviewWorkflow-model</value>
-                <value>alfresco.web-extension.messages.createUserPage</value>
-                <value>alfresco.web-extension.messages.adminToolsTab</value>
-                <value>alfresco.web-extension.messages.formsMessages</value>
-                <value>alfresco.web-extension.messages.login-page</value>
+                <value>alfresco.web-extension.messages.registration-addon</value>
             </list>
         </property>
     </bean>

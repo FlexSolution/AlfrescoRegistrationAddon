@@ -78,7 +78,7 @@
                 cancelBut.set("onclick",
                     {
                         fn: function () {
-                            window.location = window.location.href.replace(/\/createUserPage/g, "");
+                            window.location = window.location = window.location.origin + Alfresco.constants.URL_CONTEXT;
                         }
                     });
 
@@ -91,9 +91,8 @@
                                 if (obj.json.status.code == 200) {
 
                                     //redirect to home page on success
-                                    //todo: remove /share
                                     function onClickBut() {
-                                        window.location = "/share";
+                                        window.location = window.location = window.location.origin + Alfresco.constants.URL_PAGECONTEXT;
                                     }
 
                                     Alfresco.util.PopupManager.displayPrompt({
@@ -108,16 +107,9 @@
 
                         failureCallback: {
                             fn: function (obj) {
-                                // todo: use displayPrompt function for all errors
-                                if (obj.json.status.code == 400) {
-                                    Alfresco.util.PopupManager.displayMessage({
-                                        text: obj.json.message,
-                                        displayTime: 5
-                                    });
-                                } else
-                                    Alfresco.util.PopupManager.displayPrompt({
-                                        text: obj.json.message
-                                    })
+                                Alfresco.util.PopupManager.displayPrompt({
+                                    text: !obj.json ? obj.serverResponse.statusText : obj.json.message,
+                                });
                             },
                             scope: this
                         }

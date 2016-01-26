@@ -6,13 +6,12 @@
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
 
-    //todo: rename. First letter should be capital
-    Alfresco.showNewUsers = function (htmlId) {
-        Alfresco.showNewUsers.superclass.constructor.call(this, "Alfresco.showNewUsers", htmlId);
+    Alfresco.ShowNewUsers = function (htmlId) {
+        Alfresco.ShowNewUsers.superclass.constructor.call(this, "Alfresco.ShowNewUsers", htmlId);
         return this;
     };
 
-    YAHOO.extend(Alfresco.showNewUsers, Alfresco.component.Base,
+    YAHOO.extend(Alfresco.ShowNewUsers, Alfresco.component.Base,
         {
 
             getDataSource: function () {
@@ -125,35 +124,20 @@
             },
 
             getTableConfig: function () {
-                //todo: use inline variable here
-                var config = {
-                    //set tables paginator
-                    paginator: new YAHOO.widget.Paginator({
-                        rowsPerPage: 10
-                    })
+                return {
+                    paginator: new YAHOO.widget.Paginator({rowsPerPage: 10}),
+                    background: {
+                        approve: "rgba(0, 255, 0, 0.27)",
+                        reject: "rgba(255, 0, 0, 0.45)",
+                    }
                 };
-                return config;
             },
 
             //cell renderer for rejected users
             //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
             customCellRenderer: function (innerDiv, oRecord, oColumn, oData) {
-
-                //todo: I think you could use more easier metod in this place:
-                //
-                //var background = !oRecord._oData.prop_rejectReason ? "rgba(0, 255, 0, 0.27)" : "rgba(255, 0, 0, 0.45)";
-                //
-                //YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);
-
-
-                if (!oRecord._oData.prop_rejectReason) {
-                    //set green background on table row
-                    //todo: you shouldn't hardcode color, you should receive it from options of current object
-                    YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", "rgba(0, 255, 0, 0.27)");
-                } else {
-                    //set red background on table row
-                    YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", "rgba(255, 0, 0, 0.45)");
-                }
+                var background = !oRecord._oData.prop_rejectReason ? this.configs.background.approve : this.configs.background.reject;
+                YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);
                 innerDiv.innerHTML = oData;
             },
 
@@ -197,7 +181,7 @@
             autoResizeTable: function (event, usersDataTable) {
 
                 //function setPreferableColumnWidth(usersDataTable) {
-                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.showNewUsers").id).offsetWidth;
+                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.ShowNewUsers").id).offsetWidth;
 
                 var count = 0;
                 //total width of all visible columns
@@ -224,7 +208,7 @@
 
                 //set minWidth columns if total column width < dashlet width
                 if (totalWidth < dashletWidth) {
-                    usersDataTable.getColumnSet().keys.forEach(function (item, index, array) {
+                    usersDataTable.getColumnSet().keys.forEach(function (item, index) {
                         usersDataTable.setColumnWidth(index, dashletWidth / visibleColumns - 22.8)
                     });
                 }

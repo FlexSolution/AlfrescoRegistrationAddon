@@ -37,8 +37,7 @@ function findUser(email) {
 function startWorkflow(firstName, lastName, email, configFile) {
     var wFlow = workflow.getDefinitionByName("activiti$newUserReview");
     var wFlowParams = {};
-    //todo: check "person" object maybe admin and use it instead of people.getPerson("admin")
-    wFlowParams["initiator"] = people.getPerson("admin");
+    wFlowParams["initiator"] = person;
     wFlowParams["bpm:groupAssignee"] = search.findNode(configFile.content);
     wFlowParams["bpm:workflowDescription"] = msg.get("workflow.desc");
     wFlowParams["fs-forms:firstName"] = firstName;
@@ -75,15 +74,11 @@ function main() {
     }
     
     var password = passGenerator.genPass();
-    // todo: I think it is unused variable "templateProps"
-    var templateProps = prepareTemplateProps();
     var templateName = "cm:approved-user.ftl";
     var nodeForMailAction = toRegistrate(firstName, lastName, email, password);
+    var subject = "Alfresco registration";
     
-    templateProps["username"] = email;
-    templateProps["password"] = password;
-
-    sendMail(templateName, prepareTemplateProps(firstName, lastName, email, password, null), email, nodeForMailAction);
+    sendMail(templateName, prepareTemplateProps(firstName, lastName, email, password, null), email, subject, nodeForMailAction);
     sendCallback(200, msg.get("success.without.review"));
 }
 

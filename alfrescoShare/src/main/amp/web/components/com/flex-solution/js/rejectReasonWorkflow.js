@@ -6,13 +6,12 @@
         Event = YAHOO.util.Event,
         Selector = YAHOO.util.Selector;
 
-    //todo: rename. First letter should be capital
-    Alfresco.rejectedReason = function (fieldHtmlId) {
-        Alfresco.rejectedReason.superclass.constructor.call(this, "Alfresco.rejectedReason", fieldHtmlId);
+    Alfresco.RejectReason = function (fieldHtmlId) {
+        Alfresco.RejectReason.superclass.constructor.call(this, "Alfresco.RejectReason", fieldHtmlId);
         return this;
     };
 
-    YAHOO.extend(Alfresco.rejectedReason, Alfresco.component.Base,
+    YAHOO.extend(Alfresco.RejectReason, Alfresco.component.Base,
         {
             addValidation: function (scope) {
 

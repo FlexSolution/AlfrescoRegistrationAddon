@@ -1,9 +1,8 @@
-<#--todo: move this file by the following path: com/flex-solution/guest-->
 <@markup id="login-page-JS" target="js" action="after">
     <@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/registration.js"/>
 
 <script type="text/javascript">
-    new Alfresco.component.regButton("reg-button");
+    new Alfresco.component.RegistrationButton("reg-button");
 </script>
 </@markup>
 

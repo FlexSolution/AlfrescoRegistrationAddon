@@ -33,5 +33,5 @@
 
 <@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/rejectReasonWorkflow.js"/>
 <script type="text/javascript">
-    new Alfresco.rejectedReason("${fieldHtmlId}");
+    new Alfresco.RejectReason("${fieldHtmlId}");
 </script>

@@ -61,17 +61,17 @@
                     <field id="fs-forms:lastName" label-id="prop.fs-forms_lastName"/>
                     <field id="fs-forms:email" label-id="prop.fs-forms_email" read-only="true"/>
                     <field id="fs-newUserRWF:doApprove" label-id="prop.fs-newUserRWF_doApprove">
-                        <control template="/org/alfresco/components/form/controls/doApproveWorkflow.ftl">
+                        <control template="/com/flex-solution/components/form/controls/doApproveWorkflow.ftl">
                         </control>
                     </field>
 
                     <field id="fs-newUser:rejectReason" label-id="prop.fs-newUser_rejectReason">
-                        <control template="/org/alfresco/components/form/controls/rejectReasonWorkflow.ftl">
+                        <control template="/com/flex-solution/components/form/controls/rejectReasonWorkflow.ftl">
                         </control>
                     </field>
 
                     <field id="transitions">
-                        <control template="/org/alfresco/components/form/controls/transitionsWorkflow.ftl">
+                        <control template="/com/flex-solution/components/form/controls/transitionsWorkflow.ftl">
                         </control>
                     </field>
                 </appearance>

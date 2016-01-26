@@ -3,14 +3,13 @@ function throwConfigEcxeption(){
 }
 
 function getConfigFile() {
-    //get all nodes from data dictionary with cm:name == newUserReviewingGroup.txt
-    var results =companyhome.childrenByXPath("./app:dictionary/cm:newUserReviewingGroup.txt");
+    //get all with cm:name == newUserReviewingGroup.txt
+    var results =companyhome.childrenByXPath("./app:dictionary/cm:flex-solution.com/cm:registration_addon/cm:newUserReviewingGroup.txt");
     return results.length == 1? results[0]:results.length == 0? null:throwConfigEcxeption();
 }
 
 function createConfigFile() {
-    //get Data Dictionary
-    //todo: move newUserReviewingGroup.txt into the folder /Data Dictionary/flex-solution.com/Registration Addon
-    var results = companyhome.childrenByXPath("./app:dictionary");
+    //get config folder
+    var results = companyhome.childrenByXPath("./app:dictionary/cm:flex-solution.com/cm:registration_addon");
     return results[0].createFile("newUserReviewingGroup.txt")
 }

@@ -1,4 +1,3 @@
-<#--todo: move all custom controls by the following path com/flex-solution/components/form/controls-->
 <#assign isTrue=false>
 <#if field.value??>
     <#if field.value?is_boolean>
@@ -29,5 +28,5 @@
 
 <@script type="text/javascript" src="${url.context}/res/components/com/flex-solution/js/doApproveWorkflow.js" group="form"/>
 <script type="text/javascript">
-    new Alfresco.doApprove("${fieldHtmlId}");
+    new Alfresco.DoApprove("${fieldHtmlId}");
 </script>

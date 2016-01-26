@@ -1,5 +1,5 @@
 var widgets = {
-    id: "Alfresco.dashlet.showNewUsers",
-    name: "Alfresco.dashlet.showNewUsers"
+    id: "Alfresco.dashlet.ShowNewUsers",
+    name: "Alfresco.dashlet.ShowNewUsers"
 }
 model.widgets = widgets;

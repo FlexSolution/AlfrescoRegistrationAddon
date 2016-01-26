@@ -10,11 +10,12 @@
     var prop_rejectReason = task.getVariable('fs-newUser_rejectReason');
     var password = passGenerator.genPass();
     var templateName = (prop_isApprove == true) ? "cm:approved-user.ftl" : "cm:rejected-user.ftl";
+    var subject = "Alfresco registration";
 
     createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason);
 
     //send email
-    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason), prop_email, userhome);
+    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason), prop_email, subject, userhome);
 })();
 
 //create new cm:person and set needed aspects and properties

@@ -41,16 +41,9 @@
 
                         failureCallback: {
                             fn: function (obj) {
-                                // todo: display prompt for any error
-                                if (obj.json.status.code == 400) {
-                                    Alfresco.util.PopupManager.displayMessage({
-                                        text: obj.json.message,
-                                        displayTime: 5
-                                    });
-                                } else
-                                    Alfresco.util.PopupManager.displayPrompt({
-                                        text: obj.json.message
-                                    })
+                                Alfresco.util.PopupManager.displayPrompt({
+                                    text: !obj.json ? obj.serverResponse.statusText : obj.json.message,
+                                });
                             },
                             scope: this
                         }
@@ -91,17 +84,13 @@
             },
 
 
-            //todo: are you sure that there is no better way to get checkbox?
             findCheckbox: function () {
-                var inputs = document.getElementsByTagName("input");
 
-                for (var index = 0; index < inputs.length; index++) {
-                    if (inputs[index].type == "checkbox" && (inputs[index].id.indexOf("_prop_fs-forms_isRequired-entry") != -1)) {
-                        return inputs[index];
-                    }
+                function _checkElement(el) {
+                    return el.type == "checkbox" && el.id.indexOf("_prop_fs-forms_isRequired-entry") != -1;
                 }
 
-                return null;
+                return YAHOO.util.Dom.getElementsBy(_checkElement, "input")[0];
             },
 
 
@@ -142,7 +131,9 @@
 
                     failureCallback: {
                         fn: function (obj) {
-                        //    todo: why it is empty
+                            Alfresco.util.PopupManager.displayPrompt({
+                                text: !obj.json ? obj.serverResponse.statusText : obj.json.message,
+                            });
                         },
                         scope: this
                     }
@@ -156,6 +147,5 @@
                 ////listen objectFinderReady event
                 YAHOO.Bubbling.on("objectFinderReady", this.onObjectFinderReady, this);
             }
-
         });
 })();
