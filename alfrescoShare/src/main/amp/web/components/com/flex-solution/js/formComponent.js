@@ -78,7 +78,7 @@
                 cancelBut.set("onclick",
                     {
                         fn: function () {
-                            window.location = window.location = window.location.origin + Alfresco.constants.URL_CONTEXT;
+                            window.location = window.location.origin + Alfresco.constants.URL_CONTEXT;
                         }
                     });
 
