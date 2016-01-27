@@ -11,6 +11,12 @@
         </property>
     </bean>
 
+    <bean id="sudo" parent="baseJavaScriptExtension" class="Sudo">
+        <property name="extensionName">
+            <value>sudo</value>
+        </property>
+    </bean>
+
 
     <bean id="${project.artifactId}.workflowBootstrap" parent="workflowDeployer">
         <property name="workflowDefinitions">
@@ -30,5 +36,8 @@
             </list>
         </property>
     </bean>
+
+
+
 
 </beans>

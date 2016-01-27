@@ -1,0 +1,15 @@
+<extension>
+    <modules>
+        <module>
+            <id>Customize-dashlets-availability</id>
+            <version>1.0</version>
+            <auto-deploy>true</auto-deploy>
+            <customizations>
+                <customization>
+                    <targetPackageRoot>org.alfresco.components.dashboard</targetPackageRoot>
+                    <sourcePackageRoot>com.flex-solution.dashboard</sourcePackageRoot>
+                </customization>
+            </customizations>
+        </module>
+    </modules>
+</extension>

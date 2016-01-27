@@ -1,3 +1,5 @@
+/registration-share/target
+/registration-repo/target
 /build.xml
 /antProp.properties
 *.iml

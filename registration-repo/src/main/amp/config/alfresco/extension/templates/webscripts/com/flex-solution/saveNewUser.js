@@ -1,6 +1,6 @@
 <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/sendMail.js">
 
-(function register() {
+var register = function() {
 
     //get needed props from task form
     var prop_firstName = task.getVariable('fs-forms_firstName');
@@ -19,8 +19,8 @@
     createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
 
     //send email
-    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, userhome, reviewer);
-})();
+    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, reviewer);
+}
 
 //create new cm:person and set needed aspects and properties
 function createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
@@ -42,6 +42,7 @@ function createUser(prop_firstName, prop_lastName, prop_email, password, prop_is
 
     return newUser;
 }
+sudo.su(register);
 
 
 

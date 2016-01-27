@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Get user groups</shortname>
+    <description>Get user groups</description>
+    <url>/com/flex-solution/dashletAvailability</url>
+    <authentication>user</authentication>
+    <format default="json"/>
+</webscript>
