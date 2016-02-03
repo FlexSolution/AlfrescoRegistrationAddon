@@ -29,7 +29,7 @@
         <#assign el=args.htmlid?html>
     <div class="dashlet" id="${el}-users-dashlet">
         <div class="title">${msg("title")}</div>
-        <div id="content" class="body scrollableList"  <#if args.height??>style="height: ${args.height?html}px;"</#if>>
+        <div id="${el}-content" class="body scrollableList"  <#if args.height??>style="height: ${args.height?html}px;"</#if>>
         </div>
     </div>
     </@>

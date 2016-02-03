@@ -30,7 +30,7 @@
             <properties>
                 <itemKind>type</itemKind>
                 <itemId>fs-forms:reviewUsers</itemId>
-                <formId>myForm</formId>
+                <formId>new-user</formId>
                 <mode>create</mode>
                 <submitType>json</submitType>
                 <submissionUrl>/com/flex-solution/userReview</submissionUrl>

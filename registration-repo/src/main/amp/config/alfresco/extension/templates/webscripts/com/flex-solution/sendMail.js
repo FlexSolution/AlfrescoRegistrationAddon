@@ -1,4 +1,3 @@
-
 function sendMail(templateName, templateProps, email, subject, nodeForMailAction) {
     var TEMPLATES_PATH = "./app:dictionary/app:email_templates/cm:registration-templates/";
     var xpath = TEMPLATES_PATH + templateName;

@@ -9,13 +9,13 @@
 
 
     <!-- Registration of new models -->
-    <bean id="${project.artifactId}.dictionaryBootstrap" parent="dictionaryModelBootstrap"
+    <bean id="registration-repo.dictionaryBootstrap" parent="dictionaryModelBootstrap"
           depends-on="dictionaryBootstrap">
         <property name="models">
             <list>
-                <value>alfresco/module/${project.artifactId}/model/fs-newUser-model.xml</value>
-                <value>alfresco/module/${project.artifactId}/model/fs-forms-model.xml</value>
-                <value>alfresco/module/${project.artifactId}/model/fs-newUserReviewWorkflow-model.xml</value>
+                <value>alfresco/module/registration-repo/model/fs-newUser-model.xml</value>
+                <value>alfresco/module/registration-repo/model/fs-forms-model.xml</value>
+                <value>alfresco/module/registration-repo/model/fs-newUserReviewWorkflow-model.xml</value>
             </list>
         </property>
 
@@ -25,7 +25,7 @@
     <!--uploads at first time deploy (and when no exists???)-->
     <bean id="fs.bootstrapSpaces" class="org.alfresco.repo.module.ImporterModuleComponent"
           parent="module.baseComponent">
-        <property name="moduleId" value="${project.artifactId}"/>
+        <property name="moduleId" value="registration-repo"/>
         <property name="name" value="bootstrapSpaces"/>
         <property name="description" value="Initial email templates"/>
         <property name="sinceVersion" value="1.0"/>
@@ -36,12 +36,12 @@
             <list>
                 <props>
                     <prop key="path">/${spaces.company_home.childname}/${spaces.dictionary.childname}/${spaces.templates.email.childname}</prop>
-                    <prop key="location">alfresco/module/${project.artifactId}/bootstrap/config_email_templates.xml</prop>
+                    <prop key="location">alfresco/module/registration-repo/bootstrap/config_email_templates.xml</prop>
                 </props>
 
                 <props>
                     <prop key="path">/${spaces.company_home.childname}/${spaces.dictionary.childname}</prop>
-                    <prop key="location">alfresco/module/${project.artifactId}/bootstrap/config_addon_files.xml</prop>
+                    <prop key="location">alfresco/module/registration-repo/bootstrap/config_addon_files.xml</prop>
                 </props>
             </list>
         </property>

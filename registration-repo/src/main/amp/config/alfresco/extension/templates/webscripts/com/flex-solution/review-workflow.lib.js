@@ -20,7 +20,7 @@ var register = function() {
 
     //send email
     sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, reviewer);
-}
+};
 
 //create new cm:person and set needed aspects and properties
 function createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
@@ -42,8 +42,36 @@ function createUser(prop_firstName, prop_lastName, prop_email, password, prop_is
 
     return newUser;
 }
-sudo.su(register);
 
+function getAssignees() {
+    var members = people.getMembers(bpm_groupAssignee);
+
+    if(workflow.maxGroupReviewers > 0 && members.length > workflow.maxGroupReviewers)
+    {
+        throw new Error("Number of reviewers exceeds the maximum: " + members.length + "(max is " + workflow.maxGroupReviewers + ")");
+    }
+    var memberNames = new java.util.ArrayList();
+
+    for(var i in members)
+    {
+        memberNames.add(members[i].properties.userName);
+    }
+
+    return memberNames;
+}
+
+function StartWorkflow() {
+    execution.setVariable('wf_groupMembers', getAssignees());
+}
+
+function ReviewTaskCreate() {
+    //should send email
+    logger.getSystem().out(task.assignee);
+}
+
+function ReviewTaskComplete() {
+    sudo.su(register);
+}
 
 
 

@@ -7,20 +7,53 @@
              targetNamespace="http://www.activiti.org/test">
 
     <process id="newUserReview" name="Review new user" isExecutable="true">
-        <startEvent id="startevent1" name="Start" activiti:formKey="bpm:startTask"></startEvent>
-        <endEvent id="endevent1" name="End"></endEvent>
+        <extensionElements>
+            <activiti:executionListener event="start" class="org.alfresco.repo.workflow.activiti.listener.ScriptExecutionListener">
+                <activiti:field name="script">
+                    <activiti:string>
+                        &lt;import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/review-workflow.lib.js"&gt;
+                        StartWorkflow();
+                    </activiti:string>
+                </activiti:field>
+            </activiti:executionListener>
+        </extensionElements>
 
-        <userTask id="reviewUserTask" name="User review" activiti:formKey="fs-newUserRWF:userReviewingTask"
-                  activiti:candidateGroups="${bpm_groupAssignee.properties.authorityName}">
+        <startEvent id="startevent1" name="Start" activiti:formKey="bpm:startTask"/>
+
+        <endEvent id="endevent1" name="End"/>
+
+        <userTask id="reviewUserTask" name="User review" activiti:formKey="fs-newUserRWF:userReviewingTask">
             <extensionElements>
+                <activiti:taskListener event="create" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
+                    <activiti:field name="script">
+                        <activiti:string>
+                            &lt;import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/review-workflow.lib.js"&gt;
+                            ReviewTaskCreate();
+                        </activiti:string>
+                    </activiti:field>
+                </activiti:taskListener>
                 <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
                         <activiti:string>
-                            &lt;import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/saveNewUser.js"&gt;
+                            &lt;import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/review-workflow.lib.js"&gt;
+                            ReviewTaskComplete();
                         </activiti:string>
                     </activiti:field>
                 </activiti:taskListener>
             </extensionElements>
+
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>${assigneePerson}</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+
+            <!-- For each assignee, task is created -->
+            <multiInstanceLoopCharacteristics isSequential="false">
+                <loopDataInputRef>wf_groupMembers</loopDataInputRef>
+                <inputDataItem name="assigneePerson" />
+                <completionCondition>${true}</completionCondition>
+            </multiInstanceLoopCharacteristics>
         </userTask>
 
         <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="reviewUserTask"></sequenceFlow>

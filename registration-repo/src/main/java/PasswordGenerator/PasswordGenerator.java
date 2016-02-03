@@ -10,7 +10,7 @@ public class PasswordGenerator extends BaseScopableProcessorExtension {
 
     public String genPass() {
         SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(32);
+        return new BigInteger(130, random).toString(10);
     }
 }
 

@@ -18,7 +18,7 @@
                 <view:properties>
                     <app:editInline>true</app:editInline>
                     <cm:description>Uses on approved users .</cm:description>
-                    <cm:content>contentUrl=classpath:alfresco/module/${project.artifactId}/bootstrap/approved-user.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
+                    <cm:content>contentUrl=classpath:alfresco/module/registration-repo/bootstrap/approved-user.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
                     <cm:title>Email template for approved users</cm:title>
                     <cm:author>flex-solution.com</cm:author>
                     <cm:name>approved-user.ftl</cm:name>
@@ -35,7 +35,7 @@
                 <view:properties>
                     <app:editInline>true</app:editInline>
                     <cm:description>Uses on rejected users .</cm:description>
-                    <cm:content>contentUrl=classpath:alfresco/module/${project.artifactId}/bootstrap/rejected-user.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
+                    <cm:content>contentUrl=classpath:alfresco/module/registration-repo/bootstrap/rejected-user.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
                     <cm:title>Email template for rejected users</cm:title>
                     <cm:author>flex-solution.com</cm:author>
                     <cm:name>rejected-user.ftl</cm:name>

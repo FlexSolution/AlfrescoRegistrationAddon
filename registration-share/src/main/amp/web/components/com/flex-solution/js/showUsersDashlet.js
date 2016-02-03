@@ -3,8 +3,7 @@
      * YUI Library aliases
      */
     var Dom = YAHOO.util.Dom,
-        Event = YAHOO.util.Event,
-        Selector = YAHOO.util.Selector;
+        Event = YAHOO.util.Event;
 
     Alfresco.ShowNewUsers = function (htmlId) {
         Alfresco.ShowNewUsers.superclass.constructor.call(this, "Alfresco.ShowNewUsers", htmlId);
@@ -135,7 +134,7 @@
             //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
             customCellRenderer: function (innerDiv, oRecord, oColumn, oData) {
                 var background = !oRecord._oData.prop_rejectReason ? this.configs.background.approve : this.configs.background.reject;
-                YAHOO.util.Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);
+                Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);
                 innerDiv.innerHTML = oData;
             },
 
@@ -157,7 +156,7 @@
                 //if cell contains class name "rejectedDate" && ...
                 if (oArgs.target.className.indexOf("answerDate") > -1 && rejectReasonValue != "") {
                     //set cell cursor style
-                    YAHOO.util.Dom.setStyle(oArgs.target, "cursor", "pointer");
+                    Dom.setStyle(oArgs.target, "cursor", "pointer");
 
 
                     //display reject reason in tooltip balloon
@@ -179,7 +178,7 @@
             autoResizeTable: function (event, usersDataTable) {
 
                 //function setPreferableColumnWidth(usersDataTable) {
-                var dashletWidth = YAHOO.util.Dom.get(Alfresco.util.ComponentManager.findFirst("Alfresco.ShowNewUsers").id).offsetWidth;
+                var dashletWidth = Dom.get(this.id).offsetWidth;
 
                 var count = 0;
                 //total width of all visible columns
@@ -217,7 +216,7 @@
             onReady: function () {
 
                 //create YAHOO table (table container, column definitions, data source, config object)
-                var usersDataTable = new YAHOO.widget.DataTable("content", this.getColumnDefinition(), this.getDataSource(),
+                var usersDataTable = new YAHOO.widget.DataTable(this.id + "-content", this.getColumnDefinition(), this.getDataSource(),
                     {
                         background: this.options.background,
                         paginator: new YAHOO.widget.Paginator({rowsPerPage: this.options.rowsPerPage})
@@ -225,7 +224,7 @@
 
                 this.autoResizeTable(null, usersDataTable);
 
-                YAHOO.util.Event.addListener(window, "resize", this.autoResizeTable, usersDataTable);
+                Event.addListener(window, "resize", this.autoResizeTable, usersDataTable, this);
 
                 //add event listener to table
                 //oArgs object that contains event object and event source (table cell element itself)

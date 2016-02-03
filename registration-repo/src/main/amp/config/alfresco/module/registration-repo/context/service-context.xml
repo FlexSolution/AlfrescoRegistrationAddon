@@ -2,9 +2,6 @@
 <!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
 <beans>
 
-
-
-
     <bean id="genPassword" parent="baseJavaScriptExtension" class="PasswordGenerator.PasswordGenerator">
         <property name="extensionName">
             <value>passGenerator</value>
@@ -18,12 +15,12 @@
     </bean>
 
 
-    <bean id="${project.artifactId}.workflowBootstrap" parent="workflowDeployer">
+    <bean id="registration-repo.workflowBootstrap" parent="workflowDeployer">
         <property name="workflowDefinitions">
             <list>
                 <props>
                     <prop key="engineId">activiti</prop>
-                    <prop key="location">alfresco/module/${project.artifactId}/workflows/userReviewingWorkflow.bpmn20.xml</prop>
+                    <prop key="location">alfresco/module/registration-repo/workflows/userReviewingWorkflow.bpmn20.xml</prop>
                     <prop key="mimetype">text/xml</prop>
                     <prop key="redeploy">true</prop>
                 </props>
@@ -32,12 +29,9 @@
 
         <property name="models">
             <list>
-                <value>alfresco/module/${project.artifactId}/model/fs-newUserReviewWorkflow-model.xml</value>
+                <value>alfresco/module/registration-repo/model/fs-newUserReviewWorkflow-model.xml</value>
             </list>
         </property>
     </bean>
-
-
-
 
 </beans>

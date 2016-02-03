@@ -1,4 +1,4 @@
-<#assign id="myForm"/>
+<#assign id="new-user"/>
 
 <script type="text/javascript">//<![CDATA[
 new Alfresco.component.CreateUser("${id}");
@@ -15,7 +15,7 @@ new Alfresco.component.CreateUser("${id}");
 <div id="${id}" class="registration-block">
 
     <div id="${id}-form-container" class="form-container">
-        <div id="comp-logo" class="theme-company-logo"></div>
+        <div id="comp-logo" class="theme-company-logo logo-com"></div>
 
         <div id="${id}-form-caption" class="caption"><span
                 class="mandatory-indicator">*</span>Required Fields
