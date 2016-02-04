@@ -42,6 +42,23 @@
                 </view:properties>
                 <view:associations></view:associations>
             </cm:content>
+
+            <cm:content view:childName="cm:for-reviewers.ftl">
+                <view:aspects>
+                    <cm:titled/>
+                    <cm:author/>
+                    <app:inlineeditable/>
+                </view:aspects>
+                <view:properties>
+                    <app:editInline>true</app:editInline>
+                    <cm:description>Uses for reviewers</cm:description>
+                    <cm:content>contentUrl=classpath:alfresco/module/registration-repo/bootstrap/for-reviewers.ftl|mimetype=text/plain|size=|encoding=UTF-8|locale=en_US_</cm:content>
+                    <cm:title>Email template for reviewers</cm:title>
+                    <cm:author>flex-solution.com</cm:author>
+                    <cm:name>for-reviewers.ftl</cm:name>
+                </view:properties>
+                <view:associations></view:associations>
+            </cm:content>
         </cm:contains>
     </cm:folder>
 </view:view>

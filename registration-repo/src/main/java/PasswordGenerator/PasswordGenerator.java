@@ -2,15 +2,14 @@ package PasswordGenerator;
 
 import org.alfresco.repo.jscript.BaseScopableProcessorExtension;
 
-import java.security.SecureRandom;
-import java.math.BigInteger;
+import java.util.UUID;
 
 
 public class PasswordGenerator extends BaseScopableProcessorExtension {
 
     public String genPass() {
-        SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(10);
+        String uuid = UUID.randomUUID().toString();
+        return uuid.substring(0,7);
     }
 }
 

@@ -34,6 +34,11 @@
                 <property name="fs-newUserRWF:doApprove">
                     <type>d:boolean</type>
                 </property>
+                <overrides>
+                    <property name="bpm:reassignable">
+                        <default>false</default>
+                    </property>
+                </overrides>
             </properties>
 
             <mandatory-aspects>
