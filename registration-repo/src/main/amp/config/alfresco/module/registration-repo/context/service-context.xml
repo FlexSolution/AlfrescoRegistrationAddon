@@ -2,13 +2,13 @@
 <!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
 <beans>
 
-    <bean id="genPassword" parent="baseJavaScriptExtension" class="PasswordGenerator.PasswordGenerator">
+    <bean id="genPassword" parent="baseJavaScriptExtension" class="com.flexsolution.script.PasswordGenerator">
         <property name="extensionName">
             <value>passGenerator</value>
         </property>
     </bean>
 
-    <bean id="sudo" parent="baseJavaScriptExtension" class="Sudo">
+    <bean id="sudo" parent="baseJavaScriptExtension" class="com.flexsolution.script.Sudo">
         <property name="extensionName">
             <value>sudo</value>
         </property>

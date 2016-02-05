@@ -1,4 +1,4 @@
-package PasswordGenerator;
+package com.flexsolution.script;
 
 import org.alfresco.repo.jscript.BaseScopableProcessorExtension;
 

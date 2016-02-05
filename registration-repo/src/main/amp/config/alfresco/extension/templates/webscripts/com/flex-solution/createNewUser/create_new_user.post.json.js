@@ -1,14 +1,29 @@
 <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/lib.js">
 <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/sendMail.js">
 
-
+/**
+ * Used to configure response
+ *
+ * @param code - HTTP code
+ * @param message - response message
+ */
 function sendCallback(code, message) {
     status.code = code;
     status.message = message;
     status.redirect = true;
 };
 
-function toRegistrate(firstName, lastName, email, password) {
+/**
+ * Create new user
+ *
+ * @param firstName - first name of user
+ * @param lastName - last name of user
+ * @param email - email of user
+ * @param password - password
+ *
+ * @returns ScriptNode of user
+ */
+function createUser(firstName, lastName, email, password) {
 
     var currentPerson = people.createPerson(email, firstName,
         lastName, email, password, true);
@@ -19,6 +34,12 @@ function toRegistrate(firstName, lastName, email, password) {
     return currentPerson;
 }
 
+/**
+ * Find user by email or userName
+ *
+ * @param email - email or username of user
+ * @returns ScriptNode of found user
+ */
 function findUser(email) {
     var user = people.getPerson(email);
 
@@ -33,7 +54,14 @@ function findUser(email) {
     }
 };
 
-
+/**
+ * Start Workflow
+ *
+ * @param firstName - first name of new user
+ * @param lastName - last name of new user
+ * @param email - email of new user
+ * @param configFile - ScriptNode of config file
+ */
 function startWorkflow(firstName, lastName, email, configFile) {
     var wFlow = workflow.getDefinitionByName("activiti$newUserReview");
     var wFlowParams = {};
@@ -46,11 +74,14 @@ function startWorkflow(firstName, lastName, email, configFile) {
     wFlow.startWorkflow(workflow.createPackage(), wFlowParams);
 };
 
-
+/**
+ * Main function
+ */
 function main() {
-    var email = json.get("prop_fs-forms_email");
-    var firstName = json.get("prop_fs-forms_firstName");
-    var lastName = json.get("prop_fs-forms_lastName");
+    // get properties from json
+    var email = json.get("prop_fs-forms_email"),
+        firstName = json.get("prop_fs-forms_firstName"),
+        lastName = json.get("prop_fs-forms_lastName");
 
     //additional server side form validation
     if (email == "" || firstName == "") {
@@ -64,6 +95,7 @@ function main() {
         return;
     }
 
+    // get config file
     var configFile = getConfigFile();
 
     //if reviewing group is present --> start workflow
@@ -72,18 +104,26 @@ function main() {
         sendCallback(200, msg.get("success.with.review"));
         return;
     }
-    
-    var password = passGenerator.genPass();
-    var templateName = "cm:approved-user.ftl";
-    var nodeForMailAction = toRegistrate(firstName, lastName, email, password);
-    var subject = "Alfresco registration";
-    
-    sendMail(templateName, prepareTemplateProps(firstName, lastName, email, password, null, person), email, subject, nodeForMailAction);
+
+    // generate password
+    var password = passGenerator.genPass(),
+
+        //create new user
+        nodeForMailAction = createUser(firstName, lastName, email, password),
+        //define template name
+        templateName = "cm:approved-user.ftl",
+        //define subject
+        subject = "Alfresco registration",
+        //define email properties
+        templateProps = prepareTemplateProps(firstName, lastName, email, password, null, person);
+
+    // send email
+    sendMail(templateName, templateProps, email, subject, nodeForMailAction);
+
     sendCallback(200, msg.get("success.without.review"));
 }
 
 try {
-    //entry point.
     main();
 } catch (err) {
     sendCallback(500, msg.get("server.error"));

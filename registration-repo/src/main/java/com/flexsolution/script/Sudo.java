@@ -1,3 +1,5 @@
+package com.flexsolution.script;
+
 import org.alfresco.repo.jscript.BaseScopableProcessorExtension;
 import org.alfresco.repo.security.authentication.AuthenticationUtil;
 import org.mozilla.javascript.Context;

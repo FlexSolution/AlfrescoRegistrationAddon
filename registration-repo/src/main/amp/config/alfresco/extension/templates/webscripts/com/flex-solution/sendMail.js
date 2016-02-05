@@ -1,3 +1,12 @@
+/**
+ * Send Email
+ *
+ * @param templateName - template name in xpath format
+ * @param templateProps - template properties
+ * @param email - email TO
+ * @param subject - subgect of email
+ * @param nodeForMailAction - any ScriptNode object
+ */
 function sendMail(templateName, templateProps, email, subject, nodeForMailAction) {
     var TEMPLATES_PATH = "./app:dictionary/app:email_templates/cm:registration-templates/";
     var xpath = TEMPLATES_PATH + templateName;
@@ -14,6 +23,18 @@ function sendMail(templateName, templateProps, email, subject, nodeForMailAction
     mail.execute(nodeForMailAction ? nodeForMailAction : userhome);
 }
 
+
+/**
+ * Define main properties for template
+ *
+ * @param firstName - first name of new user
+ * @param lastName - last name of new user
+ * @param email - email of new user
+ * @param password - password of new user
+ * @param rejectReason - reason of reject account
+ * @param reviewer - ScriptNode object of reviewer
+ * @returns Object of properties for email template
+ */
 function prepareTemplateProps(firstName, lastName, email, password, rejectReason, reviewer){
     var templateProps = {};
     templateProps["creator"] = {firstname: reviewer.properties["firstName"], lastname: reviewer.properties["lastName"]};

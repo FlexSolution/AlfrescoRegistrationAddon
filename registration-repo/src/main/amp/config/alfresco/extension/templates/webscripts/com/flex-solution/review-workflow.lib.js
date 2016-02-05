@@ -11,10 +11,6 @@ var register = function() {
     var password = passGenerator.genPass();
     var templateName = (prop_isApprove == true) ? "cm:approved-user.ftl" : "cm:rejected-user.ftl";
     var subject = "Alfresco registration";
-    //var reviewer = search.query({
-    //    query: "+TYPE: \"cm:person\" AND @cm\\:userName:\"" + task.getAssignee() + "\"",
-    //    language:"fts-alfresco"
-    //})[0];
     var reviewer = person;
 
     createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
@@ -66,8 +62,6 @@ function StartWorkflow() {
 }
 
 function ReviewTaskCreate() {
-    //should send email
-    logger.getSystem().out(task.assignee);
 
     var assigneeProps = people.getPerson(task.assignee).properties;
 
