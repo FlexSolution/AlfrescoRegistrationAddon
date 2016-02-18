@@ -23,7 +23,7 @@
 
 
     <!--uploads at first time deploy (and when no exists???)-->
-    <bean id="fs.bootstrapSpaces" class="org.alfresco.repo.module.ImporterModuleComponent"
+    <bean id="fs.registration.bootstrapSpaces" class="org.alfresco.repo.module.ImporterModuleComponent"
           parent="module.baseComponent">
         <property name="moduleId" value="registration-repo"/>
         <property name="name" value="bootstrapSpaces"/>

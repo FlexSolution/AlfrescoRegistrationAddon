@@ -74,11 +74,20 @@
 
             setupCallback: function (a, args) {
                 var cancelBut = YAHOO.widget.Button.getButton(this.id + "-form-cancel");
+                var submitBut = YAHOO.widget.Button.getButton(this.id + "-form-submit");
+
 
                 cancelBut.set("onclick",
                     {
                         fn: function () {
                             window.location = window.location.origin + Alfresco.constants.URL_CONTEXT;
+                        }
+                    });
+
+                submitBut.set("onclick",
+                    {
+                        fn: function () {
+                            cancelBut.set("disabled", true);
                         }
                     });
 
@@ -88,6 +97,7 @@
                     {
                         successCallback: {
                             fn: function (obj) {
+                                cancelBut.set("disabled", false);
                                 if (obj.json.status.code == 200) {
 
                                     //redirect to home page on success
@@ -107,12 +117,13 @@
 
                         failureCallback: {
                             fn: function (obj) {
+                                cancelBut.set("disabled", false);
                                 Alfresco.util.PopupManager.displayPrompt({
                                     text: !obj.json ? obj.serverResponse.statusText : obj.json.message,
                                 });
                             },
                             scope: this
-                        }
+                        },
                     });
             },
 

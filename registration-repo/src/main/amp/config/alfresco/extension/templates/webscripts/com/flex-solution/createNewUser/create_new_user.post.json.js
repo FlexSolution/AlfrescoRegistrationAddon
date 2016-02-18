@@ -23,13 +23,15 @@ function sendCallback(code, message) {
  *
  * @returns ScriptNode of user
  */
-function createUser(firstName, lastName, email, password) {
+function createUser(firstName, lastName, email, password, state) {
 
     var currentPerson = people.createPerson(email, firstName,
-        lastName, email, password, true);
+        lastName, email, password, state);
 
     currentPerson.addAspect("fs-newUser:newUserAspect");
-    currentPerson.properties["fs-newUser:answerDate"] = Date.now();
+    if(state == true){
+        currentPerson.properties["fs-newUser:answerDate"] = Date.now();
+    }
     currentPerson.save();
     return currentPerson;
 }
@@ -95,21 +97,22 @@ function main() {
         return;
     }
 
+    // generate password
+    var password = passGenerator.genPass();
+
     // get config file
     var configFile = getConfigFile();
 
     //if reviewing group is present --> start workflow
     if (configFile != null && configFile.content != "") {
+        createUser(firstName, lastName, email, password, false)
         startWorkflow(firstName, lastName, email, configFile);
         sendCallback(200, msg.get("success.with.review"));
         return;
     }
 
-    // generate password
-    var password = passGenerator.genPass(),
-
         //create new user
-        nodeForMailAction = createUser(firstName, lastName, email, password),
+    var nodeForMailAction = createUser(firstName, lastName, email, password, true),
         //define template name
         templateName = "cm:approved-user.ftl",
         //define subject

@@ -13,29 +13,29 @@ var register = function() {
     var subject = "Alfresco registration";
     var reviewer = person;
 
-    createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
+    afterPropertiesSet(prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
 
     //send email
     sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, reviewer);
 };
 
-//create new cm:person and set needed aspects and properties
-function createUser(prop_firstName, prop_lastName, prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
+// set needed aspects and properties
+function afterPropertiesSet(prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
 
-    var newUser = people.createPerson(prop_email, prop_firstName, prop_lastName, prop_email, password, prop_isApprove.booleanValue());
-
-    newUser.addAspect("fs-newUser:newUserAspect");
+    var newUser = people.getPerson(prop_email);
 
     newUser.createAssociation(reviewer, "fs-newUser:whoReviewed");
 
     if (prop_isApprove == false) {
         newUser.addAspect("fs-newUser:newRejectedUserAspect");
         newUser.properties["fs-newUser:rejectReason"] = prop_rejectReason;
+    }else{
+        people.enableAccount(prop_email);
     }
 
     newUser.properties["fs-newUser:answerDate"] = Date.now();
-
     newUser.save();
+    people.setPassword(prop_email, password);
 
     return newUser;
 }

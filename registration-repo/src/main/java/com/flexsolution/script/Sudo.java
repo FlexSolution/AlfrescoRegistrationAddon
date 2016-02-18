@@ -27,6 +27,6 @@ public class Sudo extends BaseScopableProcessorExtension {
             }
         };
 
-        return AuthenticationUtil.runAs(raw, AuthenticationUtil.getSystemUserName());
+        return AuthenticationUtil.runAs(raw, AuthenticationUtil.getAdminUserName());
     }
 }
