@@ -57,8 +57,8 @@
                     <show id="transitions"/>
                 </field-visibility>
                 <appearance>
-                    <field id="fs-forms:firstName" label-id="prop.fs-forms_firstName"/>
-                    <field id="fs-forms:lastName" label-id="prop.fs-forms_lastName"/>
+                    <field id="fs-forms:firstName" label-id="prop.fs-forms_firstName" read-only="true"/>
+                    <field id="fs-forms:lastName" label-id="prop.fs-forms_lastName" read-only="true"/>
                     <field id="fs-forms:email" label-id="prop.fs-forms_email" read-only="true"/>
                     <field id="fs-newUserRWF:doApprove" label-id="prop.fs-newUserRWF_doApprove">
                         <control template="/com/flex-solution/components/form/controls/doApproveWorkflow.ftl">

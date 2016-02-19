@@ -47,7 +47,7 @@ function findUser(email) {
 
     if (user == null) {
         var existingUsers = search.query({
-            query: "+TYPE: \"cm:person\" AND @cm\\:email:\"" + email + "\"",
+            query: "TYPE:\"cm:person\" AND =cm:email:" + email,
             language:"fts-alfresco"
         });
         return existingUsers.length < 1 ? null : existingUsers[0];
@@ -90,6 +90,9 @@ function main() {
         sendCallback(400, msg.get("bad.credentials"));
         return;
     }
+    debugger;
+
+    var email = email.replaceAll("\\s","");
 
     //if user not exist
     if (findUser(email) != null) {

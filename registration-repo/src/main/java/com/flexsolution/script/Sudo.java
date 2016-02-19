@@ -19,14 +19,14 @@ public class Sudo extends BaseScopableProcessorExtension {
 
     public Object su(final Function func, final Scriptable scope, final Object... objects) {
 
+        AuthenticationUtil.setAdminUserAsFullyAuthenticatedUser();
+
         final Context cx = Context.getCurrentContext();
 
-        AuthenticationUtil.RunAsWork<Object> raw = new AuthenticationUtil.RunAsWork<Object>() {
-            public Object doWork() throws Exception {
-                return func.call(cx, ScriptableObject.getTopLevelScope(scope), scope, objects);
-            }
-        };
+        Object call = func.call(cx, ScriptableObject.getTopLevelScope(scope), scope, objects);
 
-        return AuthenticationUtil.runAs(raw, AuthenticationUtil.getAdminUserName());
+        AuthenticationUtil.clearCurrentSecurityContext();
+
+        return call;
     }
 }
