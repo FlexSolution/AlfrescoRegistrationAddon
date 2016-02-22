@@ -1,17 +1,6 @@
 <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/lib.js">
 <import resource="classpath:alfresco/extension/templates/webscripts/com/flex-solution/sendMail.js">
 
-/**
- * Used to configure response
- *
- * @param code - HTTP code
- * @param message - response message
- */
-function sendCallback(code, message) {
-    status.code = code;
-    status.message = message;
-    status.redirect = true;
-};
 
 /**
  * Create new user
@@ -90,7 +79,6 @@ function main() {
         sendCallback(400, msg.get("bad.credentials"));
         return;
     }
-    debugger;
 
     var email = email.replaceAll("\\s","");
 

@@ -75,13 +75,56 @@
                 YAHOO.util.Event.on(checkbox.id, "click", this.onChangeCheckBox, objFinder);
 
                 this.pullReviewingGroup(objFinder, checkbox);
+
+
+                YAHOO.Bubbling.on("renderCurrentValue", this.onGroupPicked, this)
+            },
+
+            onGroupPicked: function (event, args) {
+               var objFinder = args[1].eventGroup;
+                if(objFinder.getSelectedItems().length == 0){
+                    return;
+                }
+
+                Alfresco.util.Ajax.jsonPost({
+                    url: Alfresco.constants.PROXY_URI  + "com/flex-solution/getUsersNumberInGroup",
+                    dataObj: {
+                        group: objFinder.getSelectedItems()[0],
+                    },
+                    successCallback: {
+                        fn: function (resp) {
+                            if(resp.json.usersNumber != 0){
+                                return;
+                            }
+                            this.warning(objFinder);
+                        },
+                        scope: this
+                    },
+
+                    failureCallback: {
+                        fn: function () {
+                            Alfresco.util.PopupManager.displayPrompt({
+                                text: obj.json ? obj.json.message : obj.serverResponse.statusText,
+                            });
+                        },
+                        scope: this
+                    }
+                });
+            },
+
+            warning : function(objFinder){
+                Alfresco.util.PopupManager.displayPrompt({
+                    text: Alfresco.util.message("warning.reviewing.group"),
+                    icon: YAHOO.widget.SimpleDialog.ICON_WARN
+                });
             },
 
 
             //create custom validation
             addCustomValidation: function (field, args, event, form, silent, message) {
                 return args.checkbox.checked ? Alfresco.forms.validation.mandatory(field, args, event, form, silent, message) : true;
-            },
+            }
+            ,
 
 
             findCheckbox: function () {
@@ -91,7 +134,8 @@
                 }
 
                 return YAHOO.util.Dom.getElementsBy(_checkElement, "input")[0];
-            },
+            }
+            ,
 
 
             onChangeCheckBox: function (scope, objFinder) {
@@ -108,7 +152,8 @@
                     });
 
                 objFinder.widgets.addButton.set("disabled", true);
-            },
+            }
+            ,
 
 
             pullReviewingGroup: function (objFinder, checkbox) {
@@ -148,4 +193,5 @@
                 YAHOO.Bubbling.on("objectFinderReady", this.onObjectFinderReady, this);
             }
         });
-})();
+})
+();

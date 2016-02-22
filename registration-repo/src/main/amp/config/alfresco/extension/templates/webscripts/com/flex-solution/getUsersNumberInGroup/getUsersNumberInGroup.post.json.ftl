@@ -1,0 +1,3 @@
+{
+    "usersNumber": "${usersNumber?int}"
+}

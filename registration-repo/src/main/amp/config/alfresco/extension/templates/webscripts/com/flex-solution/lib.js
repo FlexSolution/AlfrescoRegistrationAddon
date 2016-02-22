@@ -24,3 +24,16 @@ function createConfigFile() {
     var results = companyhome.childrenByXPath("./app:dictionary/cm:flex-solution.com/cm:registration_addon");
     return results[0].createFile("newUserReviewingGroup.txt")
 }
+
+
+/**
+ * Used to configure response
+ *
+ * @param code - HTTP code
+ * @param message - response message
+ */
+function sendCallback(code, message) {
+    status.code = code;
+    status.message = message;
+    status.redirect = true;
+};

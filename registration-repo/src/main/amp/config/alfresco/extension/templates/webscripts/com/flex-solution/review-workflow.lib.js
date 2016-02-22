@@ -15,7 +15,6 @@ var register = function() {
 
     afterPropertiesSet(prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
 
-    //debugger;
     //send email
     sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, reviewer);
 };

@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Get users in group</shortname>
+    <description>Get number of users in reviewing group</description>
+    <url>/com/flex-solution/getUsersNumberInGroup</url>
+    <authentication>admin</authentication>
+    <format default="json"/>
+</webscript>
