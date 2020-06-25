@@ -8,9 +8,9 @@
         </property>
     </bean>
 
-    <bean id="sudo" parent="baseJavaScriptExtension" class="com.flexsolution.script.Sudo">
+    <bean id="registration.Sudo" parent="baseJavaScriptExtension" class="com.flexsolution.script.Sudo">
         <property name="extensionName">
-            <value>sudo</value>
+            <value>registerSudo</value>
         </property>
     </bean>
 

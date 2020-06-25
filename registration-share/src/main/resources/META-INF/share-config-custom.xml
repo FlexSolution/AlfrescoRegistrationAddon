@@ -49,6 +49,7 @@
         <forms>
             <form>
                 <field-visibility>
+                    <show id="fs-forms:userName"/>
                     <show id="fs-forms:firstName"/>
                     <show id="fs-forms:lastName"/>
                     <show id="fs-forms:email"/>
@@ -57,6 +58,7 @@
                     <show id="transitions"/>
                 </field-visibility>
                 <appearance>
+                    <field id="fs-forms:userName" label-id="prop.fs-forms_userName" read-only="true"/>
                     <field id="fs-forms:firstName" label-id="prop.fs-forms_firstName" read-only="true"/>
                     <field id="fs-forms:lastName" label-id="prop.fs-forms_lastName" read-only="true"/>
                     <field id="fs-forms:email" label-id="prop.fs-forms_email" read-only="true"/>
