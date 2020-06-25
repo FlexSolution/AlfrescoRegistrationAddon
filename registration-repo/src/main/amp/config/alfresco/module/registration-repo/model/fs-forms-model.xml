@@ -56,6 +56,12 @@
     <aspects>
         <aspect name="fs-forms:userCredentials">
                 <properties>
+
+                    <property name="fs-forms:userName">
+                        <type>d:text</type>
+                        <mandatory>true</mandatory>
+                    </property>
+
                     <property name="fs-forms:firstName">
                         <type>d:text</type>
                         <mandatory>true</mandatory>

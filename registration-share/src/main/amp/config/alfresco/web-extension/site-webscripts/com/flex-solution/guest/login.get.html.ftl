@@ -13,7 +13,7 @@
 
 <@markup id="registration" target="buttons" action="after" scope="page">
     <div class="form-field">
-        <input type="button" id="reg-button" value="${msg("button.registration")}"</div>
+        <input type="button" id="reg-button" value="${msg("button.registration")}"/></div>
 </@markup>
 
 

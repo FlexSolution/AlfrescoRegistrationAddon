@@ -16,7 +16,8 @@
             options: {
                 background: {
                     approve: "rgba(0, 255, 0, 0.27)",
-                    reject: "rgba(255, 0, 0, 0.45)"
+                    reject: "rgba(255, 0, 0, 0.45)",
+                    waiting: "rgba(238, 238, 0, 0.45)"
                 },
                 rowsPerPage: 10
             },
@@ -133,8 +134,8 @@
             //cell renderer for rejected users
             //oRecord == YUI Record object that prescribes table row, oData == data contained in current cell
             customCellRenderer: function (innerDiv, oRecord, oColumn, oData) {
-                var background = !oRecord._oData.prop_rejectReason ? this.configs.background.approve : this.configs.background.reject;
-                Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);
+                var background = !oRecord._oData.prop_rejectReason ? (oRecord._oData.prop_answerDate === "Waiting for confirmation"?this.configs.background.waiting: this.configs.background.approve): this.configs.background.reject;
+                Dom.setStyle(innerDiv.parentNode.parentNode, "background", background);Date
                 innerDiv.innerHTML = oData;
             },
 

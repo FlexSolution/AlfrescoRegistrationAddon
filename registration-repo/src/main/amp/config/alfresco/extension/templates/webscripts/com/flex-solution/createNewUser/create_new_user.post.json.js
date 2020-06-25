@@ -5,6 +5,7 @@
 /**
  * Create new user
  *
+ * @param userName - username of user
  * @param firstName - first name of user
  * @param lastName - last name of user
  * @param email - email of user
@@ -12,9 +13,9 @@
  *
  * @returns ScriptNode of user
  */
-function createUser(firstName, lastName, email, password, state) {
+function createUser(userName,firstName, lastName, email, password, state) {
 
-    var currentPerson = people.createPerson(email, firstName,
+    var currentPerson = people.createPerson(userName, firstName,
         lastName, email, password, state);
 
     currentPerson.addAspect("fs-newUser:newUserAspect");
@@ -28,11 +29,11 @@ function createUser(firstName, lastName, email, password, state) {
 /**
  * Find user by email or userName
  *
- * @param email - email or username of user
+ * @param userName -  username of user
  * @returns ScriptNode of found user
  */
-function findUser(email) {
-    var user = people.getPerson(email);
+function findUser(userName,email) {
+    var user = people.getPerson(userName);
 
     if (user == null) {
         var existingUsers = search.query({
@@ -48,17 +49,19 @@ function findUser(email) {
 /**
  * Start Workflow
  *
+ * @param userName - username of new user
  * @param firstName - first name of new user
  * @param lastName - last name of new user
  * @param email - email of new user
  * @param configFile - ScriptNode of config file
  */
-function startWorkflow(firstName, lastName, email, configFile) {
+function startWorkflow(userName,firstName, lastName, email, configFile) {
     var wFlow = workflow.getDefinitionByName("activiti$newUserReview");
     var wFlowParams = {};
     wFlowParams["initiator"] = person;
     wFlowParams["bpm:groupAssignee"] = search.findNode(configFile.content);
     wFlowParams["bpm:workflowDescription"] = msg.get("workflow.desc");
+    wFlowParams["fs-forms:userName"] = userName;
     wFlowParams["fs-forms:firstName"] = firstName;
     wFlowParams["fs-forms:lastName"] = lastName;
     wFlowParams["fs-forms:email"] = email;
@@ -70,12 +73,13 @@ function startWorkflow(firstName, lastName, email, configFile) {
  */
 function main() {
     // get properties from json
-    var email = json.get("prop_fs-forms_email"),
+    var userName = json.get("prop_fs-forms_userName"),
+        email = json.get("prop_fs-forms_email"),
         firstName = json.get("prop_fs-forms_firstName"),
         lastName = json.get("prop_fs-forms_lastName");
 
     //additional server side form validation
-    if (email == "" || firstName == "") {
+    if (userName == "" || email == "" || firstName == "") {
         sendCallback(400, msg.get("bad.credentials"));
         return;
     }
@@ -83,7 +87,7 @@ function main() {
     var email = email.replaceAll("\\s","");
 
     //if user not exist
-    if (findUser(email) != null) {
+    if (findUser(userName,email) != null) {
         sendCallback(400, msg.get("user.exists"));
         return;
     }
@@ -96,20 +100,20 @@ function main() {
 
     //if reviewing group is present --> start workflow
     if (configFile != null && configFile.content != "") {
-        createUser(firstName, lastName, email, password, false)
-        startWorkflow(firstName, lastName, email, configFile);
+        createUser(userName,firstName, lastName, email, password, false)
+        startWorkflow(userName,firstName, lastName, email, configFile);
         sendCallback(200, msg.get("success.with.review"));
         return;
     }
 
         //create new user
-    var nodeForMailAction = createUser(firstName, lastName, email, password, true),
+    var nodeForMailAction = createUser(userName,firstName, lastName, email, password, true),
         //define template name
         templateName = "cm:approved-user.ftl",
         //define subject
         subject = "Alfresco registration",
         //define email properties
-        templateProps = prepareTemplateProps(firstName, lastName, email, password, null, person);
+        templateProps = prepareTemplateProps(userName,firstName, lastName, email, password, null, person);
 
     // send email
     sendMail(templateName, templateProps, email, subject, nodeForMailAction);
@@ -117,8 +121,8 @@ function main() {
     sendCallback(200, msg.get("success.without.review"));
 }
 
-try {
+// try {
     main();
-} catch (err) {
-    sendCallback(500, msg.get("server.error"));
-}
+// } catch (err) {
+//     sendCallback(500, msg.get("server.error"));
+// }

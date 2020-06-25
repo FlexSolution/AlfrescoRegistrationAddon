@@ -3,6 +3,7 @@
 var register = function() {
 
     //get needed props from task form
+    var prop_userName = task.getVariable('fs-forms_userName');
     var prop_firstName = task.getVariable('fs-forms_firstName');
     var prop_lastName = task.getVariable('fs-forms_lastName');
     var prop_email = task.getVariable('fs-forms_email');
@@ -13,16 +14,16 @@ var register = function() {
     var subject = "Alfresco registration";
     var reviewer = person;
 
-    afterPropertiesSet(prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
+    afterPropertiesSet(prop_userName,prop_email, password, prop_isApprove, prop_rejectReason, reviewer);
 
     //send email
-    sendMail(templateName, prepareTemplateProps(prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, reviewer);
+    sendMail(templateName, prepareTemplateProps(prop_userName,prop_firstName, prop_lastName, prop_email, password, prop_rejectReason, reviewer), prop_email, subject, reviewer);
 };
 
 // set needed aspects and properties
-function afterPropertiesSet(prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
+function afterPropertiesSet(prop_userName,prop_email, password, prop_isApprove, prop_rejectReason, reviewer) {
 
-    var newUser = people.getPerson(prop_email);
+    var newUser = people.getPerson(prop_userName);
 
     newUser.createAssociation(reviewer, "fs-newUser:whoReviewed");
 
@@ -30,12 +31,12 @@ function afterPropertiesSet(prop_email, password, prop_isApprove, prop_rejectRea
         newUser.addAspect("fs-newUser:newRejectedUserAspect");
         newUser.properties["fs-newUser:rejectReason"] = prop_rejectReason;
     }else{
-        people.enableAccount(prop_email);
+        people.enableAccount(prop_userName);
     }
 
     newUser.properties["fs-newUser:answerDate"] = Date.now();
     newUser.save();
-    people.setPassword(prop_email, password);
+    people.setPassword(prop_userName, password);
 
     return newUser;
 }
@@ -67,6 +68,7 @@ function ReviewTaskCreate() {
 
     var templateProps = {
         firstName: assigneeProps.firstName,
+        userName: execution.getVariable('fs-forms_userName'),
         email: execution.getVariable('fs-forms_email'),
         newFirstName: execution.getVariable('fs-forms_firstName'),
         newLastName: execution.getVariable('fs-forms_lastName'),
@@ -77,7 +79,7 @@ function ReviewTaskCreate() {
 }
 
 function ReviewTaskComplete() {
-    sudo.su(register);
+    registerSudo.su(register);
 }
 
 

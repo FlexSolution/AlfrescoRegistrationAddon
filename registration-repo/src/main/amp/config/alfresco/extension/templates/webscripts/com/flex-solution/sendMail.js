@@ -20,7 +20,11 @@ function sendMail(templateName, templateProps, email, subject, nodeForMailAction
     mail.parameters.to = email;
     mail.parameters.subject = subject ? subject : "Alfresco registration";
     mail.parameters.template_model= templateProps;
-    mail.execute(nodeForMailAction ? nodeForMailAction : userhome);
+    try {
+        mail.execute(nodeForMailAction ? nodeForMailAction : userhome);
+    }catch (err) {
+        throw "error.outbound";
+    }
 }
 
 
@@ -35,10 +39,10 @@ function sendMail(templateName, templateProps, email, subject, nodeForMailAction
  * @param reviewer - ScriptNode object of reviewer
  * @returns Object of properties for email template
  */
-function prepareTemplateProps(firstName, lastName, email, password, rejectReason, reviewer){
+function prepareTemplateProps(userName,firstName, lastName, email, password, rejectReason, reviewer){
     var templateProps = {};
     templateProps["creator"] = {firstname: reviewer.properties["firstName"], lastname: reviewer.properties["lastName"]};
-    templateProps["username"] = email;
+    templateProps["username"] = userName;
     templateProps["password"] = password;
     templateProps["firstname"] = firstName;
     templateProps["lastname"] = lastName;

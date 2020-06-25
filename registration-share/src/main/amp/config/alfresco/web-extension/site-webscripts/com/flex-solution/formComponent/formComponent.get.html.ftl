@@ -31,6 +31,27 @@ new Alfresco.component.CreateUser("${id}");
             <div id="${id}-form-fields" class="form-fields">
 
                 <div class="set">
+
+                    <div class="form-field">
+
+                        <label for="${id}_prop_fs-forms_userName">User
+                            name:<span class="mandatory-indicator">*</span></label>
+
+                        <input id="${id}_prop_fs-forms_userName" name="prop_fs-forms_userName" tabindex="0" type="text" value=""
+                               maxlength="1024"/>
+
+                        <span class="help-icon">
+                            <img id="${id}_prop_fs-forms_userName-help-icon"
+                                 src="${url.context}/res/components/form/images/help.png"
+                                 title="Click to show and hide help text for the field." tabindex="0"/>
+                        </span>
+
+                        <div class="help-text"
+                             id="${id}_prop_fs-forms_userName-help">
+                            ${msg("form.help.userName")}
+                        </div>
+                    </div>
+
                     <div class="form-field">
 
                         <label for="${id}_prop_fs-forms_firstName">First
