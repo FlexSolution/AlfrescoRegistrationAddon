@@ -66,19 +66,19 @@ Alfresco Registration add-on allows registration of users by their own using new
  ```
  6. Start Alfresco
  
-#User's manual
-###Adding a special table to dashboard for displaying new registered users.
+# User's manual
+### Adding a special table to dashboard for displaying new registered users.
 Go to Customize Dashboard and add Registered Users dashboard.
  ![](readme_resources/7-config.png)
  
  ![](readme_resources/1-config.png)
  
-###Registration without adding users to registration configuration
+### Registration without adding users to registration configuration
 If you don't add a group with users,who will approve or reject new registered users,
 add-on will approve new registered user,add him to system and send a notification email
 with new login and password.
 
-###Registration with adding users to registration configuration
+### Registration with adding users to registration configuration
 If you want to assign certain group of users,who will approve or reject new registered 
 users, you have to:
  - Add these groups to User Registration Configuration tool and click submit
