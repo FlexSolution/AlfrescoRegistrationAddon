@@ -11,6 +11,28 @@ Alfresco Registration add-on allows registration of users by their own using new
  - Approve or reject new registered users in special window
  - Sends email notification status to new registered users with login and password
 
+### Registration with adding users to registration configuration
+If you want to assign certain group of users,who will approve or reject new registered 
+users, you have to:
+ - Add these groups to User Registration Configuration tool and click submit
+  
+  ![](readme_resources/8-config.png)
+  
+ - When new user registered,users in these groups receive an email with 
+ new user registered notification
+ 
+ ![](readme_resources/2-config.png)
+ 
+ - After clicking task link user will be able to approve or reject new registered user
+ in special window
+ 
+ ![](readme_resources/5-config.png)
+ 
+ - When new registered user is approved or rejected,he will receive email notification
+ about his status
+ 
+ ![](readme_resources/3-config.png)
+
  # Compatibility was tested on versions:
   - Alfresco 5.2
   - Alfresco 6.0.7
@@ -78,27 +100,7 @@ If you don't add a group with users,who will approve or reject new registered us
 add-on will approve new registered user,add him to system and send a notification email
 with new login and password.
 
-### Registration with adding users to registration configuration
-If you want to assign certain group of users,who will approve or reject new registered 
-users, you have to:
- - Add these groups to User Registration Configuration tool and click submit
-  
-  ![](readme_resources/8-config.png)
-  
- - When new user registered,users in these groups receive an email with 
- new user registered notification
- 
- ![](readme_resources/2-config.png)
- 
- - After clicking task link user will be able to approve or reject new registered user
- in special window
- 
- ![](readme_resources/5-config.png)
- 
- - When new registered user is approved or rejected,he will receive email notification
- about his status
- 
- ![](readme_resources/3-config.png)
+
  
  
  
