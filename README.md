@@ -20,7 +20,7 @@ Alfresco Registration add-on allows registration of users by their own using new
  ### The following tools must be installed:
  - Java8
  - Maven3
-  ###Required settings
+  ### Required settings
   - You have to configure Alfresco Outbound SMTP in {ALFRESCO LOCATION}/tomcat/shared/classes/alfresco-global.properties.
   ```sh
    mail.host={mail host}
